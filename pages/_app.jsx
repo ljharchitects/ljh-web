@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Header />
-      <Nav />
+      {/* <Nav /> */}
       <main className="container">
         <Component {...pageProps} />
       </main>

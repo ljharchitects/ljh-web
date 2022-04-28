@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import Menu from "./Menu";
-import style from "../styles/header.module.css";
+import style from "../styles/components/header.module.css";
 import { useState } from "react";
 import Nav from "./Nav";
 
@@ -19,9 +18,9 @@ function Header(props) {
         </div>
         <div className={style.item}>
           <Menu open={open} setOpen={setOpen} />
-          <Nav />
         </div>
       </div>
+      <Nav open={open} setOpen={setOpen} />
     </header>
   );
 }

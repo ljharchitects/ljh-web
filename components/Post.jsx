@@ -5,7 +5,7 @@ const Post = ({ post }) => {
     <div className="card">
       <Link href={`/blog/${post.slug}`} passHref>
         <div className="container">
-          <img src={post.frontmatter.cover_image} alt="" width="300px" />
+          <img src={post.frontmatter.cover_image} alt="" width="100%" />
           <div className="post-date">{post.frontmatter.date}</div>
           <h3>{post.frontmatter.title}</h3>
           <p>{post.frontmatter.excerpt}</p>

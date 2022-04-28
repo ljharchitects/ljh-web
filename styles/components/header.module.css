@@ -1,0 +1,26 @@
+@value logoHeight, mediaQuery from "../common/sizes.css";
+
+@media only screen and (max-width: mediaQuery) {
+  .container {
+    position: fixed;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 20px;
+    z-index: 3;
+  }
+
+  .item {
+    align-items: center;
+    vertical-align: middle;
+  }
+}
+
+.logo {
+  background-color: rgba(0, 0, 0, 1);
+  mix-blend-mode: soft-light;
+  mask: url(../../public/ljharchitects_logo.svg) no-repeat center;
+  width: 100px;
+  height: logoHeight;
+}

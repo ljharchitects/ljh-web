@@ -1,0 +1,70 @@
+@value mediaQuery, logoHeight from "../common/sizes.css";
+@value vagueColor, deepVagueColor, vagueFontColor from "../common/color.css";
+@value fadeIn, fadeOut, flowing from "../common/animation.css";
+
+/* .container {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+} */
+
+@media only screen and (max-width: mediaQuery) {
+  .invisible {
+    /* display: flex; */
+    animation: fadeOut 0.5s;
+    animation-fill-mode: forwards;
+    position: fixed;
+  }
+
+  .visible {
+    position: fixed;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    /* -webkit-backdrop-filter: blur(100px); */
+    /* background-color: aquamarine; */
+    background-color: deepVagueColor;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .item {
+    text-align: center;
+    font-size: 3rem;
+    margin: 1rem;
+    padding: 0;
+    font-weight: 700;
+    color: vagueFontColor;
+    mix-blend-mode: multiply;
+    /* margin: 30px; */
+    /* background-color: aqua; */
+  }
+
+  .flow {
+    display: flex;
+    justify-content: space-between;
+    width: 24rem;
+    position: fixed;
+    top: 95vh;
+    animation: flowing 30s linear infinite;
+    transform: translateX(100%);
+    font-weight: 100;
+  }
+
+  .flowItem {
+    /* width: 100vh; */
+    /* margin-right: 30px; */
+  }
+}
