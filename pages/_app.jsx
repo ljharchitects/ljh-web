@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Nav from "../components/Nav";
+import style from "../styles/_app.module.css";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Header />
       {/* <Nav /> */}
-      <main className="container">
+      <main className={style.container}>
         <Component {...pageProps} />
       </main>
     </>

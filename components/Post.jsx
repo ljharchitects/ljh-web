@@ -15,12 +15,6 @@ const Post = ({ post }) => {
             layout="responsive"
             objectFit="cover"
           />
-          {/* <img src={post.frontmatter.cover_image} alt="" width="100%" /> */}
-          {/* <div className="post-date">{post.frontmatter.date}</div>
-          <h3>{post.frontmatter.title}</h3>
-          <p>{post.frontmatter.excerpt}</p>
-
-          <a className="btn">Read More</a> */}
         </div>
       </Link>
     </div>

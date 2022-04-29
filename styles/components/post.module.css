@@ -2,15 +2,20 @@
   /* background-color: aqua; */
   margin: 0;
   padding: 0;
+  scrollbar-width: none;
+}
+
+.card::-webkit-scrollbar {
+  display: none;
 }
 
 .container {
   margin: 0;
   padding: 0;
   position: relative;
-  /* z-index: -1; */
-  /* width: 100%; */
-  /* width: 100px; */
-  /* height: 100%; */
-  /* background-color: blue; */
+  scrollbar-width: none;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }

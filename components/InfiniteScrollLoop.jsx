@@ -1,3 +1,4 @@
+import style from "../styles/components/infinitescrollloop.module.css";
 import {
   useRef,
   useState,
@@ -7,43 +8,58 @@ import {
 } from "react";
 
 const InfiniteScrollLoop = ({
-  surroundingBackup = 1,
+  surroundingBackup = 4,
   outerStyle,
   innerStyle,
   children,
 }) => {
-  const contentRef = useRef();
-  const scrollRef = useRef();
+  const contentRef = useRef(null);
+  const scrollRef = useRef(null);
   const [height, setHeight] = useState(0);
 
   const backupHeight = height * surroundingBackup;
 
   const handleScroll = useCallback(() => {
-    console.log("scroll!");
     if (scrollRef.current) {
       const scroll = scrollRef.current.scrollTop;
-      if (scroll < backupHeight || scroll >= backupHeight + height) {
+      console.log(scroll);
+      if (scroll <= backupHeight || scroll >= backupHeight + height) {
         scrollRef.current.scrollTop = backupHeight + (scroll % height);
       }
     }
   }, [height]);
+
   useEffect(() => {
     if (contentRef.current) {
       setHeight(contentRef.current.offsetHeight);
       scrollRef.current.scrollTop = backupHeight;
     }
+  }, [height]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   });
 
   return (
-    <div className="infinite-scroll-loop-outer" onScroll={handleScroll}>
+    <div className={style.outer}>
       <div
-        className="infinite-scroll-loop-inner"
+        className={style.inner}
         ref={scrollRef}
-        style={{ height, ...innerStyle }}
+        style={{ height }}
         onScroll={handleScroll}
       >
-        {children}
-        {/* <div ref={contentRef}>{children}</div> */}
+        {Array(surroundingBackup)
+          .fill()
+          .map((item) => {
+            return <div>{children}</div>;
+          })}
+        <div ref={contentRef}>{children}</div>
+        {Array(surroundingBackup)
+          .fill()
+          .map(() => (
+            <div>{children}</div>
+          ))}
       </div>
     </div>
   );

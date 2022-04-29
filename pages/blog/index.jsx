@@ -6,11 +6,11 @@ import Post from "../../components/Post";
 import InfiniteScrollLoop from "../../components/InfiniteScrollLoop";
 import { sortByDate } from "../../utils";
 
-export default function Home({ posts }) {
+export default function Posts({ posts }) {
   return (
-    <div>
+    <>
       <Head>
-        <title>dev blog</title>
+        <title>ljh log</title>
       </Head>
       <div className="posts">
         <InfiniteScrollLoop>
@@ -19,7 +19,7 @@ export default function Home({ posts }) {
           ))}
         </InfiniteScrollLoop>
       </div>
-    </div>
+    </>
   );
 }
 

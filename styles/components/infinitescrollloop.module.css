@@ -1,0 +1,30 @@
+/* @value scroll from "../common/animation.css"; */
+
+.outer {
+  position: fixed;
+  scrollbar-width: none;
+  width: 100%;
+  height: 100%;
+}
+.outer::after {
+  /* content: ""; */
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* width: 100%;
+  height: 100%; */
+  scrollbar-width: none;
+}
+.outer::-webkit-scrollbar {
+  display: none;
+}
+
+.inner {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  /* animation: scroll 30s infinite linear; */
+}
+
+.inner::-webkit-scrollbar {
+  display: none;
+}
