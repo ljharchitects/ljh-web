@@ -1,10 +1,10 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import yaml from 'js-yaml'
-import Head from 'next/head'
-import Post from '../../components/Post'
-import { sortByDate } from '../../utils'
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import Head from "next/head";
+import Post from "../../components/Post";
+import InfiniteScrollLoop from "../../components/InfiniteScrollLoop";
+import { sortByDate } from "../../utils";
 
 export default function Home({ posts }) {
   return (
@@ -12,37 +12,40 @@ export default function Home({ posts }) {
       <Head>
         <title>dev blog</title>
       </Head>
-
-      <div className='posts'>
-        {posts.map((post, index) => (
-          <Post key={index} post={post} />
-        ))}
+      <div className="posts">
+        <InfiniteScrollLoop>
+          {posts.map((post, index) => (
+            <Post key={index} post={post} />
+          ))}
+        </InfiniteScrollLoop>
       </div>
     </div>
-  )
+  );
 }
 
-
 export async function getStaticProps() {
-  const files = fs.readdirSync(path.join("posts"))
-  const posts = files.map(filename => {
+  const files = fs.readdirSync(path.join("posts"));
+  const posts = files.map((filename) => {
     // Create slug
-    const slug = filename.replace(".md", "")
+    const slug = filename.replace(".md", "");
 
     // Get frontmatter
-    const markdownWithMeta = fs.readFileSync(path.join("posts", filename), "utf-8")
+    const markdownWithMeta = fs.readFileSync(
+      path.join("posts", filename),
+      "utf-8"
+    );
 
-    const { data: frontmatter } = matter(markdownWithMeta)
+    const { data: frontmatter } = matter(markdownWithMeta);
 
     return {
       slug,
-      frontmatter
-    }
-  })
+      frontmatter,
+    };
+  });
 
   return {
     props: {
       posts: posts.sort(sortByDate),
     },
-  }
+  };
 }

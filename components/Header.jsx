@@ -5,14 +5,14 @@ import { useState } from "react";
 import Nav from "./Nav";
 
 function Header(props) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
     <header>
       <div className={style.container}>
         <div className={style.item}>
           <Link href="/" passHref>
             <a>
-              <div className={style.logo} />
+              <div className={style.logo}>ljh</div>
             </a>
           </Link>
         </div>
