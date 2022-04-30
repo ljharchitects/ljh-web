@@ -19,10 +19,19 @@
   display: none;
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(calc(-500px));
+  }
+}
+
 .inner {
   overflow-y: scroll;
   scrollbar-width: none;
-  /* animation: scroll 30s infinite linear; */
+  /* animation: scroll 60s infinite linear; */
 }
 
 .inner::-webkit-scrollbar {

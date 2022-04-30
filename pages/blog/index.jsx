@@ -13,11 +13,11 @@ export default function Posts({ posts }) {
         <title>ljh log</title>
       </Head>
       <div className="posts">
-        <InfiniteScrollLoop>
-          {posts.map((post, index) => (
-            <Post key={index} post={post} />
-          ))}
-        </InfiniteScrollLoop>
+        {/* <InfiniteScrollLoop> */}
+        {posts.map((post, index) => (
+          <Post key={index} post={post} />
+        ))}
+        {/* </InfiniteScrollLoop> */}
       </div>
     </>
   );
