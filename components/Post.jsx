@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import style from "../styles/components/post.module.css";
+import { useRef, useEffect } from "react";
 
 const Post = ({ post }) => {
   return (

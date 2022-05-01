@@ -5,19 +5,34 @@ import Head from "next/head";
 import Post from "../../components/Post";
 import InfiniteScrollLoop from "../../components/InfiniteScrollLoop";
 import { sortByDate } from "../../utils";
+import { useRef, useEffect, useState } from "react";
 
 export default function Posts({ posts }) {
+  const postsRef = useRef([]);
+  postsRef.current = [];
+
+  const addPosts = (el) => {
+    console.log(el);
+    postsRef.current.push(el);
+  };
+
+  useEffect(() => {
+    if (postsRef.current) {
+      console.log(postsRef.current);
+    }
+  });
+
   return (
     <>
       <Head>
-        <title>ljh log</title>
+        <title>ljh | log</title>
       </Head>
       <div className="posts">
-        {/* <InfiniteScrollLoop> */}
-        {posts.map((post, index) => (
-          <Post key={index} post={post} />
-        ))}
-        {/* </InfiniteScrollLoop> */}
+        <InfiniteScrollLoop>
+          {posts.map((post, index) => (
+            <Post key={index} post={post} />
+          ))}
+        </InfiniteScrollLoop>
       </div>
     </>
   );

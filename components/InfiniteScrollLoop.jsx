@@ -22,7 +22,6 @@ const InfiniteScrollLoop = ({
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
       const scroll = scrollRef.current.scrollTop;
-      console.log(scroll);
       if (scroll <= backupHeight || scroll >= backupHeight + height) {
         scrollRef.current.scrollTop = backupHeight + (scroll % height);
       }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import style from "../styles/components/nav.module.css";
+import Contact from "./Contact";
 
 const Nav = ({ open, setOpen }) => (
   <div className={!open ? style.visible : style.invisible}>
@@ -15,20 +16,7 @@ const Nav = ({ open, setOpen }) => (
         </Link>
       </li>
     </ul>
-    <div className={style.flow}>
-      <div className={style.flowItem}>
-        Contact :{" "}
-        <Link href="mailto:ljh@ljh.studio">
-          <a>ljh@ljh.studio</a>
-        </Link>
-      </div>
-      <div className={style.flowItem}>
-        Instagram :{" "}
-        <Link href="https://www.instagram.com/ljh_architects/">
-          <a>@ljh_architects</a>
-        </Link>
-      </div>
-    </div>
+    <Contact />
   </div>
 );
 

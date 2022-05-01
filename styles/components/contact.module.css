@@ -1,0 +1,11 @@
+@value flowing from "../common/animation.css";
+.flow {
+  display: flex;
+  justify-content: space-between;
+  width: 24rem;
+  position: fixed;
+  top: 95vh;
+  animation: flowing 30s linear infinite;
+  transform: translateX(100%);
+  font-weight: 100;
+}

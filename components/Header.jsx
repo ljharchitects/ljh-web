@@ -12,7 +12,7 @@ function Header(props) {
         <div className={style.item}>
           <Link href="/" passHref>
             <a>
-              <div className={style.logo}>ljh</div>
+              <div className={style.logo}></div>
             </a>
           </Link>
         </div>
