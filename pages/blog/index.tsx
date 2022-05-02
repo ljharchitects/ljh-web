@@ -1,5 +1,5 @@
-import type { GetStaticProps } from "next";
-import type { Iposts } from "../../types";
+import type { GetStaticProps, NextPage } from "next";
+import type { Ipost, Ifrontmatter } from "../../types";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -8,7 +8,7 @@ import Post from "../../components/Post";
 import InfiniteScrollLoop from "../../components/InfiniteScrollLoop";
 import { sortByDate } from "../../utils";
 
-export default function Posts({ posts }) {
+export const Posts: NextPage<{ posts: Ipost[] }> = ({ posts }) => {
   return (
     <>
       <Head>
@@ -23,7 +23,9 @@ export default function Posts({ posts }) {
       </div>
     </>
   );
-}
+};
+export default Posts;
+
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(path.join("posts"));
   const posts = files.map((filename) => {

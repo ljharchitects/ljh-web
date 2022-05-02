@@ -2,9 +2,20 @@ export interface Iopen {
   open: boolean;
 }
 
-export interface Iposts {
+export interface Ipost {
   slug: string;
-  frontmatter: {
-    [key: string]: any;
-  };
+  frontmatter: Ifrontmatter;
+}
+
+export interface Ifrontmatter {
+  title: string;
+  date: Date;
+  excerpt: string;
+  cover_image: string;
+}
+
+export interface IpostPage {
+  frontmatter: Ifrontmatter;
+  slug: string;
+  content: string;
 }

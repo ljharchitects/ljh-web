@@ -1,6 +1,6 @@
 import React from "react";
 
-const Environment = (props) => (
+const Environment = () => (
   <>
     <ambientLight color={"#ffffff"} />
     <directionalLight

@@ -1,6 +1,6 @@
-import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 
-const Camera = (props) => {
+const Camera = () => {
   return (
     <>
       <PerspectiveCamera
