@@ -3,9 +3,10 @@ import Menu from "./Menu";
 import style from "../styles/components/header.module.css";
 import { useState } from "react";
 import Nav from "./Nav";
+import { Iopen } from "../types";
 
-function Header(props) {
-  const [open, setOpen] = useState(true);
+function Header() {
+  const [open, setOpen] = useState<Iopen>(true);
   return (
     <header>
       <div className={style.container}>

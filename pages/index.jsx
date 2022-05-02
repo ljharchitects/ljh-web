@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { Canvas } from "@react-three/fiber";
+import Experience from "../components/webgl/Experience";
 
 export default function Home() {
   return (
@@ -6,8 +8,7 @@ export default function Home() {
       <Head>
         <title>ljh architects</title>
       </Head>
-
-      <>Home</>
+      <Experience />
     </div>
   );
 }

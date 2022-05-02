@@ -1,3 +1,5 @@
+import type { GetStaticProps } from "next";
+import type { Iposts } from "../../types";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -5,23 +7,8 @@ import Head from "next/head";
 import Post from "../../components/Post";
 import InfiniteScrollLoop from "../../components/InfiniteScrollLoop";
 import { sortByDate } from "../../utils";
-import { useRef, useEffect, useState } from "react";
 
 export default function Posts({ posts }) {
-  const postsRef = useRef([]);
-  postsRef.current = [];
-
-  const addPosts = (el) => {
-    console.log(el);
-    postsRef.current.push(el);
-  };
-
-  useEffect(() => {
-    if (postsRef.current) {
-      console.log(postsRef.current);
-    }
-  });
-
   return (
     <>
       <Head>
@@ -37,8 +24,7 @@ export default function Posts({ posts }) {
     </>
   );
 }
-
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(path.join("posts"));
   const posts = files.map((filename) => {
     // Create slug
@@ -63,4 +49,4 @@ export async function getStaticProps() {
       posts: posts.sort(sortByDate),
     },
   };
-}
+};

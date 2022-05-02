@@ -50,14 +50,14 @@ const InfiniteScrollLoop = ({
       >
         {Array(surroundingBackup)
           .fill()
-          .map((item) => {
-            return <div>{children}</div>;
+          .map((item, index) => {
+            return <div key={index}>{children}</div>;
           })}
         <div ref={contentRef}>{children}</div>
         {Array(surroundingBackup)
           .fill()
-          .map(() => (
-            <div>{children}</div>
+          .map((item, index) => (
+            <div key={index}>{children}</div>
           ))}
       </div>
     </div>

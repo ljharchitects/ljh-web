@@ -1,7 +1,7 @@
 import style from "../styles/components/contact.module.css";
 import Link from "next/link";
 
-const Contact = (props) => (
+const Contact = () => (
   <div className={style.flow}>
     <div className={style.flowItem}>
       Contact :{" "}
