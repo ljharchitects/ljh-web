@@ -12,6 +12,7 @@
     "@react-three/drei": "^9.6.0",
     "@react-three/fiber": "^8.0.12",
     "gray-matter": "^4.0.3",
+    "gsap": "^3.10.4",
     "marked": "^4.0.14",
     "next": "12.1.5",
     "react": "18.0.0",
