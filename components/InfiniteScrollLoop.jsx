@@ -8,7 +8,7 @@ import {
 } from "react";
 
 const InfiniteScrollLoop = ({
-  surroundingBackup = 4,
+  surroundingBackup = 1,
   outerStyle,
   innerStyle,
   children,

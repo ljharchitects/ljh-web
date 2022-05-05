@@ -9,6 +9,7 @@ export const RhinoModelLoader = (path: string) => {
   modelObj.castShadow = true;
   modelObj.receiveShadow = true;
   modelObj.rotation.x = -Math.PI / 2;
+  console.log(modelObj);
   return modelObj;
 };
 

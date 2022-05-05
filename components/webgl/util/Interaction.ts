@@ -20,7 +20,6 @@ export const interaction = () => {
         break;
     }
   };
-  const [prevTime, setPrevTime] = useState(performance.now());
   const [directionInput, setDirectionInput] = useState({
     forward: false,
     backward: false,
@@ -29,19 +28,6 @@ export const interaction = () => {
     up: false,
     down: false,
   });
-  let backward = false;
-  let left = false;
-  let right = false;
-  let up = false;
-  let down = false;
-  // let directionInput = {
-  //   forward,
-  //   backward,
-  //   left,
-  //   right,
-  //   up,
-  //   down,
-  // };
 
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.code) {
@@ -50,13 +36,11 @@ export const interaction = () => {
         break;
       case "ArrowUp":
       case "KeyW":
-        console.log("w down");
         setDirectionInput({ ...directionInput, forward: true });
         break;
 
       case "ArrowLeft":
       case "KeyA":
-        console.log("a down");
         setDirectionInput({ ...directionInput, left: true });
         break;
 
@@ -86,14 +70,12 @@ export const interaction = () => {
     switch (e.code) {
       case "ArrowUp":
       case "KeyW":
-        console.log("w up");
         setDirectionInput({ ...directionInput, forward: false });
         break;
 
       case "ArrowLeft":
       case "KeyA":
         setDirectionInput({ ...directionInput, left: false });
-        console.log("a up");
         break;
 
       case "ArrowDown":
@@ -124,7 +106,5 @@ export const interaction = () => {
     handleKeyDown,
     handleKeyUp,
     directionInput,
-    prevTime,
-    setPrevTime,
   };
 };

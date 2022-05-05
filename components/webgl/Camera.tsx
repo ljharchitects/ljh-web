@@ -32,15 +32,11 @@ type Props = {
     up: boolean;
     down: boolean;
   };
-  prevTime: number;
-  setPrevTime: Dispatch<SetStateAction<number>>;
 };
 
 const Camera: FunctionComponent<Props> = ({
   selectedModelName,
   directionInput,
-  prevTime,
-  setPrevTime,
 }) => {
   const [camParams, setCamParams] = useState<IpersCamera>(worldCamParams);
   const [conParams, setConParams] = useState<IorbitControl>(worldConParams);
@@ -78,11 +74,12 @@ const Camera: FunctionComponent<Props> = ({
         break;
     }
   }, [selectedModelName]);
-  useFrame(() => {
-    // if (!camRef.current || !conRef.current) {
-    //   return;
-    // }
-    movePosition(camRef, conRef, directionInput, prevTime, setPrevTime);
+  useFrame((state, delta, xrFrame) => {
+    if (!camRef.current || !conRef.current) {
+      return;
+    }
+    // console.log(delta);
+    movePosition(camRef, conRef, directionInput, delta);
   });
   return (
     <>

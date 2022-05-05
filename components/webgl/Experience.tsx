@@ -9,7 +9,6 @@ import { interaction } from "./util/Interaction";
 
 const renderOptions: WebGLRendererParameters = {
   logarithmicDepthBuffer: true,
-  antialias: true,
 };
 
 const Experience = () => {
@@ -19,8 +18,6 @@ const Experience = () => {
     handleKeyDown,
     handleKeyUp,
     directionInput,
-    prevTime,
-    setPrevTime,
   } = interaction();
 
   useEffect(() => {
@@ -34,7 +31,13 @@ const Experience = () => {
 
   return (
     <div id="canvas-container" className={style.canvas_container}>
-      <Canvas gl={renderOptions} shadows={true} linear={true}>
+      <Canvas
+        gl={renderOptions}
+        onCreated={(canvasCtx) => {
+          canvasCtx.gl.physicallyCorrectLights = true;
+        }}
+        shadows={true}
+      >
         <Environment />
         <WorldMap
           selectedModelName={selectedModelName}
@@ -43,8 +46,6 @@ const Experience = () => {
         <Camera
           selectedModelName={selectedModelName}
           directionInput={directionInput}
-          prevTime={prevTime}
-          setPrevTime={setPrevTime}
         />
       </Canvas>
     </div>

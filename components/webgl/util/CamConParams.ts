@@ -103,8 +103,7 @@ export const movePosition = (
   camRef: RefObject<PerspectiveCameraImpl>,
   conRef: RefObject<OrbitControlsImpl>,
   directionInput: directionType,
-  prevTime: number,
-  setPrevTime: Dispatch<SetStateAction<number>>
+  delta: number
 ) => {
   if (!camRef.current || !conRef.current) {
     return;
@@ -114,18 +113,13 @@ export const movePosition = (
   let nippleMoveRight = 0;
   let nippleMoveUp = 0;
   let speed = 30;
-  // let prevTime = performance.now();
   let velocity = new THREE.Vector3();
   let direction = new THREE.Vector3();
 
-  const time = performance.now();
-  const delta = (time - prevTime) / 1000;
-  velocity.z -= velocity.z * delta * 10;
-  velocity.x -= velocity.x * delta * 10;
-  velocity.y -= velocity.y * delta * 10;
-  // console.log(delta);
+  velocity.z -= velocity.z * delta;
+  velocity.x -= velocity.x * delta;
+  velocity.y -= velocity.y * delta;
 
-  // console.log(directionInput.forward);
   direction.z =
     Number(directionInput.forward) - Number(directionInput.backward);
   direction.x = Number(directionInput.right) - Number(directionInput.left);
@@ -150,7 +144,6 @@ export const movePosition = (
   }
   moveForBackwardPosition(velocity.z * delta, camRef, conRef);
   moveRightLeftPosition(velocity.x * delta, camRef, conRef);
-  setPrevTime(time);
 };
 
 const moveForBackwardPosition = (
@@ -164,10 +157,8 @@ const moveForBackwardPosition = (
   let vec = new THREE.Vector3();
   vec.setFromMatrixColumn(camRef.current.matrix, 0);
   vec.crossVectors(camRef.current.up, vec);
-  // console.log(dist);
   camRef.current.position.addScaledVector(vec, dist);
   conRef.current.target.addScaledVector(vec, dist);
-  // console.log(camRef.current.position);
 };
 
 const moveRightLeftPosition = (
