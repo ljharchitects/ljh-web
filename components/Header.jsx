@@ -4,7 +4,7 @@ import style from "../styles/components/header.module.css";
 import { useState } from "react";
 import Nav from "./Nav";
 
-function Header() {
+const Header = () => {
   const [open, setOpen] = useState(true);
   return (
     <header>
@@ -24,6 +24,6 @@ function Header() {
       <Nav open={open} setOpen={setOpen} />
     </header>
   );
-}
+};
 
 export default Header;

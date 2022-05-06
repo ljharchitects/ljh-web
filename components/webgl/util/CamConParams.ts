@@ -13,7 +13,7 @@ export const worldConParams = {
   minPolarAngle: Math.PI / 4,
   maxPolarAngle: Math.PI / 2,
   autoRotate: true,
-  autoRotateSpeed: -5,
+  autoRotateSpeed: -0.1,
   enableRotate: true,
   enableDamping: false,
   enableZoom: true,
@@ -32,6 +32,18 @@ const defaultGsapParams = {
   ease: "expo",
 };
 
+const worldCamPos = {
+  x: -110,
+  y: 150,
+  z: 200,
+};
+
+const worldConTarget = {
+  x: 0,
+  y: 0,
+  z: 0,
+};
+
 export const worldTransitionParams = (
   camRef: RefObject<PerspectiveCameraImpl>,
   conRef: RefObject<OrbitControlsImpl>
@@ -47,18 +59,25 @@ export const worldTransitionParams = (
       }),
       gsap.to(camRef.current.position, {
         ...defaultGsapParams,
-        x: -110,
-        y: 150,
-        z: 200,
+        ...worldCamPos,
       }),
       gsap.to(conRef.current.target, {
         ...defaultGsapParams,
-        x: 0,
-        y: 0,
-        z: 0,
+        ...worldConTarget,
       })
     );
   }
+};
+
+const skipHouseCamPos = {
+  x: 45,
+  y: 1,
+  z: 50,
+};
+
+const skipHouseConTarget = {
+  ...skipHouseCamPos,
+  z: skipHouseCamPos.z - 1,
 };
 
 export const skipHouseTransitionParams = (
@@ -76,15 +95,11 @@ export const skipHouseTransitionParams = (
       }),
       gsap.to(camRef.current.position, {
         ...defaultGsapParams,
-        x: 45,
-        y: 1,
-        z: 50,
+        ...skipHouseCamPos,
       }),
       gsap.to(conRef.current.target, {
         ...defaultGsapParams,
-        x: 45,
-        y: 1,
-        z: 49,
+        ...skipHouseConTarget,
       })
     );
   }

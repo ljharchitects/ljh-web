@@ -7,12 +7,12 @@ import {
   useEffect,
 } from "react";
 
-const InfiniteScrollLoop = ({ surroundingBackup = 1, children }) => {
+const InfiniteScrollLoop = ({ children }) => {
   const contentRef = useRef(null);
   const scrollRef = useRef(null);
   const [height, setHeight] = useState(0);
 
-  const backupHeight = height * surroundingBackup;
+  const backupHeight = height;
 
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
@@ -43,17 +43,9 @@ const InfiniteScrollLoop = ({ surroundingBackup = 1, children }) => {
         style={{ height }}
         onScroll={handleScroll}
       >
-        {Array(surroundingBackup)
-          .fill()
-          .map((item, index) => {
-            return <div key={index}>{children}</div>;
-          })}
+        <div>{children}</div>
         <div ref={contentRef}>{children}</div>
-        {Array(surroundingBackup)
-          .fill()
-          .map((item, index) => (
-            <div key={index}>{children}</div>
-          ))}
+        <div>{children}</div>
       </div>
     </div>
   );
