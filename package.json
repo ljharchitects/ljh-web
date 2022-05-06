@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "rm -rf out && next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,11 +15,13 @@
     "gsap": "^3.10.4",
     "marked": "^4.0.14",
     "next": "12.1.5",
+    "next-compose-plugins": "^2.2.1",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "three": "^0.140.0"
   },
   "devDependencies": {
+    "@types/marked": "^4.0.3",
     "@types/node": "^17.0.31",
     "@types/three": "^0.139.0",
     "eslint": "8.14.0",

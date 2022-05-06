@@ -11,8 +11,9 @@ function Header() {
       <div className={style.container}>
         <div className={style.item}>
           <Link href="/" passHref>
-            <a>
-              <div className={style.logo}></div>
+            <a className={style.logoBlock}>
+              {/* <div className={style.logo}></div> */}
+              <div className={style.logoTxt}>ljh</div>
             </a>
           </Link>
         </div>

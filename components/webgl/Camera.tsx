@@ -9,6 +9,7 @@ import {
   FunctionComponent,
   Dispatch,
   SetStateAction,
+  memo,
 } from "react";
 import {
   worldCamParams,
@@ -34,59 +35,62 @@ type Props = {
   };
 };
 
-const Camera: FunctionComponent<Props> = ({
-  selectedModelName,
-  directionInput,
-}) => {
-  const [camParams, setCamParams] = useState<IpersCamera>(worldCamParams);
-  const [conParams, setConParams] = useState<IorbitControl>(worldConParams);
+const Camera: FunctionComponent<Props> = memo(
+  ({ selectedModelName, directionInput }) => {
+    const [camParams, setCamParams] = useState<IpersCamera>(worldCamParams);
+    const [conParams, setConParams] = useState<IorbitControl>(worldConParams);
 
-  const camRef = useRef<PerspectiveCameraImpl>(null);
-  const conRef = useRef<OrbitControlsImpl>(null);
-  const [isAutoRotate, setIsAutoRotate] = useState(true);
-  const skipHouseMinName: ModelName = "skipHouseMin";
+    const camRef = useRef<PerspectiveCameraImpl>(null);
+    const conRef = useRef<OrbitControlsImpl>(null);
+    const [isAutoRotate, setIsAutoRotate] = useState(true);
+    const skipHouseMinName: ModelName = "skipHouseMin";
 
-  // AUTO ROTATE
-  const handleStopRotate = () => {
-    setIsAutoRotate(false);
-  };
-  useEffect(() => {
-    if (conRef.current) {
-      document.addEventListener("click", handleStopRotate);
-      return () => {
-        document.removeEventListener("click", handleStopRotate);
-      };
-    }
-  });
+    // AUTO ROTATE
+    const handleStopRotate = () => {
+      setIsAutoRotate(false);
+    };
+    useEffect(() => {
+      if (conRef.current) {
+        document.addEventListener("click", handleStopRotate);
+        return () => {
+          document.removeEventListener("click", handleStopRotate);
+        };
+      }
+    }, []);
 
-  // TRANSITION
-  useEffect(() => {
-    switch (selectedModelName) {
-      case skipHouseMinName:
-        setConParams(firstPersonConParams);
-        skipHouseTransitionParams(camRef, conRef);
-        break;
+    // TRANSITION
+    useEffect(() => {
+      switch (selectedModelName) {
+        case skipHouseMinName:
+          setConParams(firstPersonConParams);
+          skipHouseTransitionParams(camRef, conRef);
+          break;
 
-      default:
-        setConParams(worldConParams);
-        worldTransitionParams(camRef, conRef);
-        setIsAutoRotate(true);
-        break;
-    }
-  }, [selectedModelName]);
-  useFrame((state, delta, xrFrame) => {
-    if (!camRef.current || !conRef.current) {
-      return;
-    }
-    // console.log(delta);
-    movePosition(camRef, conRef, directionInput, delta);
-  });
-  return (
-    <>
-      <PerspectiveCamera ref={camRef} makeDefault {...camParams} />
-      <OrbitControls ref={conRef} {...conParams} autoRotate={isAutoRotate} />
-    </>
-  );
-};
+        default:
+          setConParams(worldConParams);
+          worldTransitionParams(camRef, conRef);
+          setIsAutoRotate(true);
+          break;
+      }
+    }, [selectedModelName]);
+
+    useFrame((state, delta, xrFrame) => {
+      // console.log(state);
+      if (!camRef.current || !conRef.current) {
+        return;
+      }
+      // console.log(delta);
+      movePosition(camRef, conRef, directionInput, delta);
+    });
+    return (
+      <>
+        <PerspectiveCamera ref={camRef} makeDefault {...worldCamParams} />
+        <OrbitControls ref={conRef} {...conParams} autoRotate={isAutoRotate} />
+      </>
+    );
+  }
+);
+
+Camera.displayName = "Camera";
 
 export default Camera;

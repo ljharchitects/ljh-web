@@ -1,0 +1,44 @@
+.card {
+  padding-top: 100px;
+}
+
+.postTitle {
+  font-weight: 500;
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+
+.postDate {
+  font-weight: 100;
+  font-size: 0.75rem;
+  margin-left: 2rem;
+}
+
+.coverImg {
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.postBody {
+  margin-bottom: 300px;
+}
+
+.postBody p {
+  line-height: calc(1ex / 0.32);
+  margin: 1rem 2rem;
+  font-weight: 300;
+}
+
+.postBody li {
+  margin-left: 1rem;
+}
+
+.postBody li p {
+  margin-left: 0rem;
+}
+
+.postBody div {
+  margin: 3rem 0;
+}

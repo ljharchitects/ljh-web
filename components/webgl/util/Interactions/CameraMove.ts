@@ -1,25 +1,8 @@
 import { ThreeEvent } from "@react-three/fiber";
-import { useState } from "react";
-import { ModelName } from "./ModelName";
+import { useState, useEffect } from "react";
+import { ModelName } from "../ModelName";
 
-export const interaction = () => {
-  const [selectedModelName, setSelectedModelName] = useState("");
-
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    const skipHouseMinName: ModelName = "skipHouseMin";
-    const oceanRndMinName: ModelName = "oceanRndMin";
-
-    switch (e.eventObject.name) {
-      case skipHouseMinName:
-        setSelectedModelName(skipHouseMinName);
-        break;
-      case oceanRndMinName:
-        setSelectedModelName(oceanRndMinName);
-        break;
-      default:
-        break;
-    }
-  };
+export const Interaction = (setSelectedModelName) => {
   const [directionInput, setDirectionInput] = useState({
     forward: false,
     backward: false,
@@ -99,12 +82,16 @@ export const interaction = () => {
         break;
     }
   };
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keyup", handleKeyUp);
+    return () => (
+      document.removeEventListener("keydown", handleKeyDown),
+      document.removeEventListener("keyup", handleKeyUp)
+    );
+  });
 
   return {
-    selectedModelName,
-    handleClick,
-    handleKeyDown,
-    handleKeyUp,
     directionInput,
   };
 };

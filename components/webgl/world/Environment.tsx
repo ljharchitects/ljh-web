@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-const Environment = () => (
+const Environment = memo(() => (
   // FIXME
   <>
     <ambientLight color={"#ffffff"} />
@@ -18,6 +18,7 @@ const Environment = () => (
       shadow-mapSize={[1024 / 2, 1024 / 2]}
     />
   </>
-);
+));
+Environment.displayName = "Environment";
 
 export default Environment;

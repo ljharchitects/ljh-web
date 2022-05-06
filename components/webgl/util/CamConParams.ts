@@ -84,7 +84,7 @@ export const skipHouseTransitionParams = (
         ...defaultGsapParams,
         x: 45,
         y: 1,
-        z: 48,
+        z: 49,
       })
     );
   }
@@ -109,16 +109,16 @@ export const movePosition = (
     return;
   }
 
-  let nippleMoveForward = 0;
-  let nippleMoveRight = 0;
-  let nippleMoveUp = 0;
-  let speed = 30;
+  // let nippleMoveForward = 0;
+  // let nippleMoveRight = 0;
+  // let nippleMoveUp = 0;
+  let speed = 100;
   let velocity = new THREE.Vector3();
   let direction = new THREE.Vector3();
 
-  velocity.z -= velocity.z * delta;
-  velocity.x -= velocity.x * delta;
-  velocity.y -= velocity.y * delta;
+  velocity.z -= velocity.z * delta * 10;
+  velocity.x -= velocity.x * delta * 10;
+  velocity.y -= velocity.y * delta * 10;
 
   direction.z =
     Number(directionInput.forward) - Number(directionInput.backward);

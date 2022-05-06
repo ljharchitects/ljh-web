@@ -1,37 +1,27 @@
 import { Canvas } from "@react-three/fiber";
 import Camera from "./Camera";
 import style from "../../styles/webgl/experience.module.css";
-import WorldMap from "./world/WorldMap";
+import WorldMap from "./world/World";
 import Environment from "./world/Environment";
 import { WebGLRendererParameters } from "three";
-import { useEffect } from "react";
-import { interaction } from "./util/Interaction";
+import { memo, useEffect } from "react";
+import { Interaction } from "./util/Interactions/CameraMove";
+import { ClickSelection } from "./util/Interactions/ClickSelection";
 
 const renderOptions: WebGLRendererParameters = {
   logarithmicDepthBuffer: true,
 };
 
-const Experience = () => {
-  const {
-    selectedModelName,
-    handleClick,
-    handleKeyDown,
-    handleKeyUp,
-    directionInput,
-  } = interaction();
+const Experience = memo(() => {
+  const { selectedModelName, setSelectedModelName, handleClick } =
+    ClickSelection();
+  const { directionInput } = Interaction(setSelectedModelName);
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keyup", handleKeyUp);
-    return () => (
-      document.removeEventListener("keydown", handleKeyDown),
-      document.removeEventListener("keyup", handleKeyUp)
-    );
-  });
-
+  console.log("experience loaded!");
   return (
     <div id="canvas-container" className={style.canvas_container}>
       <Canvas
+        performance={{ min: 0.5 }}
         gl={renderOptions}
         onCreated={(canvasCtx) => {
           canvasCtx.gl.physicallyCorrectLights = true;
@@ -50,6 +40,8 @@ const Experience = () => {
       </Canvas>
     </div>
   );
-};
+});
+
+Experience.displayName = "Experience";
 
 export default Experience;

@@ -1,10 +1,15 @@
 import { ThreeEvent } from "@react-three/fiber";
+import { ParsedUrlQuery } from "querystring";
 import { RefObject } from "react";
 import { Event, Object3D } from "three";
 
 export interface Ipost {
   slug: string;
   frontmatter: Ifrontmatter;
+}
+
+export interface IParams extends ParsedUrlQuery {
+  slug: string;
 }
 
 export interface Ifrontmatter {

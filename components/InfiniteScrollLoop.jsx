@@ -7,12 +7,7 @@ import {
   useEffect,
 } from "react";
 
-const InfiniteScrollLoop = ({
-  surroundingBackup = 1,
-  outerStyle,
-  innerStyle,
-  children,
-}) => {
+const InfiniteScrollLoop = ({ surroundingBackup = 1, children }) => {
   const contentRef = useRef(null);
   const scrollRef = useRef(null);
   const [height, setHeight] = useState(0);
@@ -26,14 +21,14 @@ const InfiniteScrollLoop = ({
         scrollRef.current.scrollTop = backupHeight + (scroll % height);
       }
     }
-  }, [height]);
+  }, [height, backupHeight]);
 
   useEffect(() => {
     if (contentRef.current) {
       setHeight(contentRef.current.offsetHeight);
       scrollRef.current.scrollTop = backupHeight;
     }
-  }, [height]);
+  }, [height, backupHeight]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

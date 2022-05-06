@@ -1,31 +1,27 @@
 import { useFrame, useLoader } from "@react-three/fiber";
-import { Suspense } from "react";
+import { memo, Suspense } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-const UnderConstruction = () => {
+const UnderConstruction = memo(() => {
   const underConstructionPath = "../../models/world/construction.glb";
   const UnderConstructionObj = useLoader(GLTFLoader, underConstructionPath);
 
   const animation = {
-    mixer: THREE.AnimationMixer,
+    mixer: typeof THREE.AnimationMixer,
     actions: {
       rotation: THREE.AnimationAction,
       current: THREE.AnimationAction,
     },
   };
-
+  let mixer: THREE.AnimationMixer;
   if (UnderConstructionObj.animations.length) {
-    animation.mixer = new THREE.AnimationMixer(UnderConstructionObj.scene);
-    animation.actions.rotation = animation.mixer.clipAction(
-      UnderConstructionObj.animations[0]
-    );
-    animation.actions.current = animation.actions.rotation;
-    animation.actions.current.play();
+    mixer = new THREE.AnimationMixer(UnderConstructionObj.scene);
+    const currentAction = mixer.clipAction(UnderConstructionObj.animations[0]);
+    currentAction.play();
   }
   useFrame((state, delta) => {
-    // mixer?.update(delta);
-    animation.mixer.update(delta * 0.2);
+    mixer.update(delta * 0.2);
   });
   return (
     <>
@@ -34,6 +30,8 @@ const UnderConstruction = () => {
       </Suspense>
     </>
   );
-};
+});
+
+UnderConstruction.displayName = "UnderConstruction";
 
 export default UnderConstruction;
