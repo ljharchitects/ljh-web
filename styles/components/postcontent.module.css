@@ -42,3 +42,7 @@
 .postBody div {
   margin: 3rem 0;
 }
+
+.postBody hr {
+  margin: 1rem 2rem;
+}

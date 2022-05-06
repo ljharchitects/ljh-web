@@ -19,12 +19,6 @@ export interface Ifrontmatter {
   cover_image: string;
 }
 
-export interface IpostPage {
-  frontmatter: Ifrontmatter;
-  slug: string;
-  content: string;
-}
-
 export type loaderType = "rhino3dm" | "gltf";
 
 export interface IinteractionObj {
