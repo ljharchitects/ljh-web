@@ -8,7 +8,6 @@ export const GltfModelLoadHelper = (path, name = path) => {
   modelObj.castShadow = true;
   modelObj.receiveShadow = true;
   modelObj.name = name
-  console.log("gltf model load helper")
   return modelObj;
 };
 

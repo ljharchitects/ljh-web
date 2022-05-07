@@ -12,7 +12,6 @@ type Props = {
 
 const World: FunctionComponent<Props> = memo(
   ({ selectedModelName, handleClick }) => {
-    console.log("loaded worldmap");
     return (
       <>
         <Map />
