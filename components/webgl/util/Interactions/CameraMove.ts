@@ -1,8 +1,7 @@
-import { ThreeEvent } from "@react-three/fiber";
 import { useState, useEffect } from "react";
-import { ModelName } from "../ModelName";
+import useSelectedModelNameStore from "../../../util/Store";
 
-export const Interaction = (setSelectedModelName) => {
+export const Interaction = () => {
   const [directionInput, setDirectionInput] = useState({
     forward: false,
     backward: false,
@@ -11,6 +10,8 @@ export const Interaction = (setSelectedModelName) => {
     up: false,
     down: false,
   });
+
+  const { setSelectedModelName } = useSelectedModelNameStore();
 
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.code) {
