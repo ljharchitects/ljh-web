@@ -17,11 +17,11 @@ const Header = () => {
             </a>
           </Link>
         </div>
-        <div className={style.item}>
+        {/* <div className={style.item}>
           <Menu open={open} setOpen={setOpen} />
-        </div>
+        </div> */}
       </div>
-      <Nav open={open} setOpen={setOpen} />
+      {/* <Nav open={open} setOpen={setOpen} /> */}
     </header>
   );
 };

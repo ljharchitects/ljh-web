@@ -1,45 +1,43 @@
 @value mediaQuery, logoHeight from "../common/sizes.css";
 @value vagueColor, deepVagueColor, vagueFontColor from "../common/color.css";
 
-@media only screen and (max-width: mediaQuery) {
-  .invisible {
-    position: fixed;
-    transition: all 0.3s ease-out;
-    opacity: 0;
-    display: none;
-  }
+.invisible {
+  position: fixed;
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  display: none;
+}
 
-  .visible {
-    position: fixed;
-    transition: all 0.3s ease-in;
-    opacity: 1;
-    z-index: 1;
-  }
+.visible {
+  position: fixed;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  z-index: 1;
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    background-color: deepVagueColor;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background-color: deepVagueColor;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-  .item {
-    text-align: center;
-    font-size: 3rem;
-    margin: 1rem;
-    padding: 0;
-    font-weight: 700;
-    color: vagueFontColor;
-    mix-blend-mode: hard-light;
-  }
+.item {
+  text-align: center;
+  font-size: 3rem;
+  margin: 1rem;
+  padding: 0;
+  font-weight: 700;
+  color: vagueFontColor;
+  mix-blend-mode: hard-light;
 }
