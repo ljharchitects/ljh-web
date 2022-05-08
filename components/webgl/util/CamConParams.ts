@@ -118,6 +118,9 @@ export const movePosition = (
   camRef: RefObject<PerspectiveCameraImpl>,
   conRef: RefObject<OrbitControlsImpl>,
   directionInput: directionType,
+  joystickForBackwardVal: number,
+  joystickLeftRightVal: number,
+  joystickUpDownVal: number,
   delta: number
 ) => {
   if (!camRef.current || !conRef.current) {
@@ -147,18 +150,28 @@ export const movePosition = (
   if (directionInput.left || directionInput.right) {
     velocity.x += direction.x * speed * delta;
   }
-  if (directionInput.up || directionInput.down) {
+  if (directionInput.up || directionInput.down || joystickUpDownVal) {
     velocity.y += direction.y * speed * delta;
     if (conRef.current.target.y >= 0.5 && camRef.current.position.y >= 0.5) {
-      conRef.current.target.y += velocity.y * delta;
-      camRef.current.position.y += velocity.y * delta;
+      conRef.current.target.y += velocity.y * delta - joystickUpDownVal / 1000;
+      camRef.current.position.y +=
+        velocity.y * delta - joystickUpDownVal / 1000;
     } else {
       conRef.current.target.y = 0.5;
       camRef.current.position.y = 0.5;
     }
   }
-  moveForBackwardPosition(velocity.z * delta, camRef, conRef);
-  moveRightLeftPosition(velocity.x * delta, camRef, conRef);
+  // console.log(`velocity.z * delta : ${velocity.z * delta}`);
+  moveForBackwardPosition(
+    velocity.z * delta - joystickForBackwardVal / 1000,
+    camRef,
+    conRef
+  );
+  moveLeftRightPosition(
+    velocity.x * delta + joystickLeftRightVal / 1000,
+    camRef,
+    conRef
+  );
 };
 
 const moveForBackwardPosition = (
@@ -176,7 +189,7 @@ const moveForBackwardPosition = (
   conRef.current.target.addScaledVector(vec, dist);
 };
 
-const moveRightLeftPosition = (
+const moveLeftRightPosition = (
   dist: number,
   camRef: RefObject<PerspectiveCameraImpl>,
   conRef: RefObject<OrbitControlsImpl>

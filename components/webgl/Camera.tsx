@@ -13,13 +13,20 @@ import {
 import { ModelName } from "./util/ModelName";
 import { IorbitControl } from "../../types";
 import { useFrame } from "@react-three/fiber";
-import useSelectedModelNameStore from "../util/Store";
+import useSelectedModelNameStore from "../util/store/SelectModelStore";
 import { Interaction } from "./util/Interactions/CameraMove";
+import { useJoystickMoveStore } from "../util/store/JoystickMoveStore";
+// import { JoystickController } from "./util/Interactions/JoystickController";
 
 const Camera: FunctionComponent = () => {
-  const { selectedModelName } = useSelectedModelNameStore();
+  const selectedModelName = useSelectedModelNameStore(
+    (state) => state.selectedModelName
+  );
 
   const { directionInput } = Interaction();
+  // JoystickController();
+  // const { moveStick, updownStick } = JoystickController();
+  // console.log(moveStick);
 
   const [conParams, setConParams] = useState<IorbitControl>(worldConParams);
 
@@ -57,11 +64,30 @@ const Camera: FunctionComponent = () => {
     }
   }, [selectedModelName]);
 
+  const joystickForBackwardVal = useJoystickMoveStore(
+    (state) => state.joystickForBackwardVal
+  );
+  const joystickLeftRightVal = useJoystickMoveStore(
+    (state) => state.joystickLeftRightVal
+  );
+  const joystickUpDownVal = useJoystickMoveStore(
+    (state) => state.joystickUpDownVal
+  );
+
   useFrame((state, delta, xrFrame) => {
     if (!camRef.current || !conRef.current) {
       return;
     }
-    movePosition(camRef, conRef, directionInput, delta);
+
+    movePosition(
+      camRef,
+      conRef,
+      directionInput,
+      joystickForBackwardVal,
+      joystickLeftRightVal,
+      joystickUpDownVal,
+      delta
+    );
   });
   return (
     <>

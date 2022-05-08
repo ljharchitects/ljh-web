@@ -3,7 +3,7 @@ import { FunctionComponent, Suspense, useEffect, useState } from "react";
 import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import { ModelName } from "../util/ModelName";
-import useSelectedModelNameStore from "../../util/Store";
+import useSelectedModelNameStore from "../../util/store/SelectModelStore";
 import { Object3D } from "three";
 
 const SkipHouse: FunctionComponent = () => {

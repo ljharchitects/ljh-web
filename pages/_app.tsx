@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Header />
       {/* <Nav /> */}
+
       <main className={style.container}>
         <Component {...pageProps} />
       </main>

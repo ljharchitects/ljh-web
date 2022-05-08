@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import useSelectedModelNameStore from "../../../util/Store";
+import useSelectedModelNameStore from "../../../util/store/SelectModelStore";
+import logo from "../../../../styles/components/header.module.css";
 
 export const Interaction = () => {
   const [directionInput, setDirectionInput] = useState({
@@ -83,12 +84,17 @@ export const Interaction = () => {
         break;
     }
   };
+
+  const logoElement = document.querySelector(`.${logo.logoTxt}`);
+
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+    logoElement?.addEventListener("click", () => setSelectedModelName(""));
     return () => (
       document.removeEventListener("keydown", handleKeyDown),
-      document.removeEventListener("keyup", handleKeyUp)
+      document.removeEventListener("keyup", handleKeyUp),
+      logoElement?.removeEventListener("click", () => setSelectedModelName(""))
     );
   });
 

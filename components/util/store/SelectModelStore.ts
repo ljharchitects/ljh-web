@@ -1,4 +1,3 @@
-import { ThreeEvent } from "@react-three/fiber";
 import create, { State } from "zustand";
 
 interface selectedModelState extends State {
@@ -6,7 +5,7 @@ interface selectedModelState extends State {
   setSelectedModelName: (name: string) => void;
 }
 
-const useSelectedModelNameStore = create<selectedModelState>((set) => ({
+export const useSelectedModelNameStore = create<selectedModelState>((set) => ({
   selectedModelName: "",
   setSelectedModelName: (name) => set((state) => ({ selectedModelName: name })),
 }));

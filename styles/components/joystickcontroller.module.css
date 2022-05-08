@@ -1,0 +1,115 @@
+@value joystickBackgroundColor: rgba(150, 150, 150, 0.5);
+@value joystickContollerColor: rgba(250, 250, 250, 0.7);
+@value blurVal: 5px;
+@value AreaWidth: 100px;
+@value AreaHeight: 100px;
+@value offsetSide: 50px;
+@value offsetBottom: 50px;
+@value arrowSize: 0.5rem;
+@value arrowMargin: 10px;
+
+.move {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(AreaWidth - arrowMargin);
+  height: calc(AreaHeight - arrowMargin);
+  left: calc(offsetSide + arrowMargin / 2);
+  bottom: calc(offsetBottom + arrowMargin / 2);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.move .item {
+  z-index: 1;
+  position: relative;
+  user-select: none;
+  font-size: arrowSize;
+  font-weight: 100;
+}
+
+.sideContainer {
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  width: calc(AreaWidth - arrowMargin);
+  font-size: arrowSize;
+  font-weight: 100;
+}
+
+.moveDragTarget {
+  z-index: 2;
+  background-color: joystickContollerColor;
+  border-radius: 30px;
+  width: calc(AreaWidth / 2);
+  height: calc(AreaHeight / 2);
+  position: fixed;
+  /* position: absolute; */
+  bottom: calc(offsetBottom + 50px / 2);
+  left: calc(offsetSide + 50px / 2);
+  /* bottom: calc(50% - 50px / 2);
+  left: calc(50% - 50px / 2); */
+}
+
+.moveDragArea {
+  background-color: joystickBackgroundColor;
+  backdrop-filter: blur(blurVal);
+  -webkit-backdrop-filter: blur(blurVal);
+  position: fixed;
+  /* position: absolute; */
+  width: AreaWidth;
+  height: AreaHeight;
+  border-radius: 50px;
+  bottom: calc(offsetBottom);
+  left: calc(offsetSide);
+}
+
+.updown {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(AreaWidth - arrowMargin);
+  height: calc(AreaHeight - arrowMargin);
+  right: calc(offsetSide + arrowMargin / 2);
+  bottom: calc(offsetBottom + arrowMargin / 2);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.updown .item {
+  z-index: 1;
+  position: relative;
+  user-select: none;
+  font-size: arrowSize;
+  font-weight: 100;
+}
+
+.updownDragTarget {
+  background-color: joystickContollerColor;
+  border-radius: 30px;
+  width: calc(AreaWidth / 2);
+  height: calc(AreaHeight / 2);
+  position: fixed;
+  bottom: calc(offsetBottom + 50px / 2);
+  right: calc(offsetSide + 50px / 2);
+  /* bottom: calc(50% - 50px / 2);
+  left: calc(50% - 50px / 2); */
+}
+
+.updownDragArea {
+  background-color: joystickBackgroundColor;
+  backdrop-filter: blur(blurVal);
+  -webkit-backdrop-filter: blur(blurVal);
+  position: fixed;
+  width: AreaWidth;
+  height: AreaHeight;
+  border-radius: 50px;
+  bottom: calc(offsetBottom);
+  right: calc(offsetSide);
+}
