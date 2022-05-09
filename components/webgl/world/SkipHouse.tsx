@@ -11,7 +11,7 @@ import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import { ModelName } from "../util/ModelName";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
 import { Material, Mesh, MeshStandardMaterial, Object3D } from "three";
-import { hoverChangeMaterial } from "../util/Interactions/HoverChange";
+import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
 
 const SkipHouse: FunctionComponent = () => {
   const selectedModelName = useSelectedModelNameStore(
@@ -50,7 +50,7 @@ const SkipHouse: FunctionComponent = () => {
   useEffect(() => {
     if (!isSelected) {
       const hoverMaterial = new MeshStandardMaterial({ color: "#808080" });
-      hoverChangeMaterial(hover, skipHouseObj as Object3D, hoverMaterial);
+      hoverChangeMaterial(hover, skipHouseObj as Object3D);
     }
   });
   return (
