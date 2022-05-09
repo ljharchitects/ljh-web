@@ -49,7 +49,6 @@ const SkipHouse: FunctionComponent = () => {
   const [hover, setHover] = useState(false);
   useEffect(() => {
     if (!isSelected) {
-      const hoverMaterial = new MeshStandardMaterial({ color: "#808080" });
       hoverChangeMaterial(hover, skipHouseObj as Object3D);
     }
   });

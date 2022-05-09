@@ -6,57 +6,23 @@ import {
   RawShaderMaterial,
 } from "three";
 
-const defaultMaterial = new RawShaderMaterial({
-  depthWrite: false,
-  depthTest: false,
-  side: DoubleSide,
-  vertexShader: `
-    uniform mat4 projectionMatrix;
-    uniform mat4 viewMatrix;
-    uniform mat4 modelMatrix;
-
-    attribute vec3 position;
-
-    void main()
-    {
-      gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    precision mediump float;
-
-    void main()
-    {
-      gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
-    }
-  `,
-});
-
-const hoverChangeMaterial = (
-  hover: boolean,
-  targetObject: Object3D,
-  targetMaterial: MeshStandardMaterial | RawShaderMaterial = defaultMaterial
-) => {
+const hoverChangeMaterial = (hover: boolean, targetObject: Object3D) => {
   if (hover) {
     targetObject.traverse((child) => {
       if (child instanceof Mesh) {
         if (child.userData.savedMaterial) {
-          // child.material.color.setHex("#ff0000");
-          child.material = targetMaterial;
+          child.material.color.setHex(0x999999);
         } else {
-          // const material = child.material.color.getHex();
-          const material = child.material;
-          child.userData.savedMaterial = material;
-          // child.material.color.setHex("#ff0000");
-          child.material = targetMaterial;
+          child.userData.savedMaterial = child.material.color.getHex();
+          child.material.color.setHex(0x999999);
         }
       }
     });
   } else {
     targetObject.traverse((child) => {
       if (child instanceof Mesh && child.userData.savedMaterial) {
-        const savedMaterial = child.userData.savedMaterial;
-        child.material = savedMaterial;
+        const hex = child.userData.savedMaterial;
+        child.material.color.setHex(hex);
       }
     });
   }
