@@ -1,0 +1,18 @@
+@value vagueColor, deepVagueColor from "../common/color.css";
+
+.container {
+  background-color: vagueColor;
+  width: 17rem;
+  padding: 1rem;
+  left: -10rem;
+  user-select: none;
+  align-content: center;
+  position: absolute;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  font-weight: 100;
+}
+
+.container p {
+  margin: 0;
+}

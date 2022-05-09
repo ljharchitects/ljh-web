@@ -1,17 +1,20 @@
 import { ThreeEvent } from "@react-three/fiber";
 import {
-  Children,
   FunctionComponent,
   Suspense,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import { ModelName } from "../util/ModelName";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
-import { Material, Mesh, MeshStandardMaterial, Object3D } from "three";
+import { Object3D } from "three";
 import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
+import { Html } from "@react-three/drei";
+import style from "../../../styles/components/info.module.css";
+import HoverInfoPanel from "../util/HoverInfoPanel";
 
 const SkipHouse: FunctionComponent = () => {
   const selectedModelName = useSelectedModelNameStore(
@@ -52,6 +55,7 @@ const SkipHouse: FunctionComponent = () => {
       hoverChangeMaterial(hover, skipHouseObj as Object3D);
     }
   });
+
   return (
     <>
       <Suspense>
@@ -66,7 +70,13 @@ const SkipHouse: FunctionComponent = () => {
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
         >
-          {/* <meshStandardMaterial color={"#ff0000"} transparent opacity={0.5} /> */}
+          <HoverInfoPanel
+            position={[55, -35, 25]}
+            hover={hover}
+            isSelected={isSelected}
+            projectNo="A-0121"
+            projectName="SKIP_HOUSE"
+          />
         </primitive>
       </Suspense>
     </>
