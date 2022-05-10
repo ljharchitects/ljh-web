@@ -16,14 +16,6 @@
   vertical-align: middle;
 }
 
-.logo {
-  background-color: rgba(0, 0, 0, 0.8);
-  mask: url(../../public/ljharchitects_logo.svg) no-repeat center;
-  width: 100px;
-  height: logoHeight;
-  z-index: 5;
-}
-
 .logoBlock {
   cursor: pointer;
   text-decoration: none;

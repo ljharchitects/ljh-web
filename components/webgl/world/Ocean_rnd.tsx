@@ -1,15 +1,17 @@
 import { FunctionComponent, Suspense, useEffect, useState } from "react";
 import { Object3D } from "three";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
+import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import HoverInfoPanel from "../util/HoverInfoPanel";
 import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
 import { ModelName } from "../util/ModelName";
 import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 
 const OceanRnd: FunctionComponent = () => {
-  const OceanRndPath = "../../models/world/world_ocean_rnd.3dm";
+  const OceanRndPath = "../../models/world/world_ocean_rnd_min.glb";
+  // const OceanRndPath = "../../models/world/world_ocean_rnd.glb";
   const OceanRndName: ModelName = "oceanRndMin";
-  const OceanRndObj = RhinoModelLoadHelper(OceanRndPath, OceanRndName);
+  const OceanRndObj = GltfModelLoadHelper(OceanRndPath, OceanRndName);
 
   const selectedModelName = useSelectedModelNameStore(
     (state) => state.selectedModelName

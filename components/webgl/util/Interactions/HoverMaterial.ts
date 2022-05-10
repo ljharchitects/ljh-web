@@ -1,10 +1,4 @@
-import {
-  DoubleSide,
-  Mesh,
-  MeshStandardMaterial,
-  Object3D,
-  RawShaderMaterial,
-} from "three";
+import { Mesh, Object3D } from "three";
 
 const hoverChangeMaterial = (hover: boolean, targetObject: Object3D) => {
   if (hover) {

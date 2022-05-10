@@ -17,7 +17,7 @@ const CustomProgress = () => {
         <div></div>
         <div></div>
       </div>
-      <div className={style.item}>{Math.round(progress)} % loaded</div>
+      <div className={style.item}>{Math.round(progress)} %</div>
     </div>
   );
 };
