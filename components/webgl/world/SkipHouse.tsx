@@ -26,8 +26,8 @@ const SkipHouse: FunctionComponent = () => {
   const [skipHouseObj, setSkipHouseOjb] = useState(skipHouseMin);
 
   // Detail model
-  // const skipHouseDetailPath = "../../models/detail/skip_house_com.glb";
-  const skipHouseDetailPath = "../../models/detail/skip_house.glb";
+  const skipHouseDetailPath = "../../models/detail/skip_house_com.glb";
+  // const skipHouseDetailPath = "../../models/detail/skip_house.glb";
   const skipHouseDetailName: ModelName = "skipHouseDetail";
   const skipHouseDetail = GltfModelLoadHelper(
     skipHouseDetailPath,

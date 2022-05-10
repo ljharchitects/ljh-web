@@ -8,8 +8,8 @@ import { ModelName } from "../util/ModelName";
 import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 
 const OceanRnd: FunctionComponent = () => {
-  const OceanRndPath = "../../models/world/world_ocean_rnd_min.glb";
-  // const OceanRndPath = "../../models/world/world_ocean_rnd.glb";
+  // const OceanRndPath = "../../models/world/world_ocean_rnd_min.glb";
+  const OceanRndPath = "../../models/world/world_ocean_rnd.glb";
   const OceanRndName: ModelName = "oceanRndMin";
   const OceanRndObj = GltfModelLoadHelper(OceanRndPath, OceanRndName);
 

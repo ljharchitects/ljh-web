@@ -1,1 +1,6 @@
-export type ModelName = "skipHouseMin" | "skipHouseDetail" | "oceanRndMin";
+export type ModelName =
+  | "skipHouseMin"
+  | "skipHouseDetail"
+  | "oceanRndMin"
+  | "ViewOptimizationMin"
+  | "FutsalPlayGround";

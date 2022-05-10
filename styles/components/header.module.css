@@ -22,6 +22,7 @@
 }
 
 .logoTxt {
+  cursor: pointer;
   display: inline;
   font-family: "Helvetica Neue";
   font-size: 2rem;
