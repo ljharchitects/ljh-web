@@ -1,19 +1,11 @@
 import { ThreeEvent } from "@react-three/fiber";
-import {
-  FunctionComponent,
-  Suspense,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FunctionComponent, Suspense, useEffect, useState } from "react";
 import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import { ModelName } from "../util/ModelName";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
 import { Object3D } from "three";
 import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
-import { Html } from "@react-three/drei";
-import style from "../../../styles/components/info.module.css";
 import HoverInfoPanel from "../util/HoverInfoPanel";
 
 const SkipHouse: FunctionComponent = () => {
@@ -48,7 +40,6 @@ const SkipHouse: FunctionComponent = () => {
     }
   }, [isSelected]);
 
-  // TODO : Hover over
   const [hover, setHover] = useState(false);
   useEffect(() => {
     if (!isSelected) {
@@ -56,17 +47,18 @@ const SkipHouse: FunctionComponent = () => {
     }
   });
 
+  const handleClick = (e: ThreeEvent<Event>) => {
+    if ((skipHouseObj as Object3D).name === skipHouseMinName) {
+      setSelectedModelName(e.eventObject.name);
+    }
+  };
+
   return (
     <>
-      <Suspense>
+      <Suspense fallback={null}>
         <primitive
           object={skipHouseObj}
-          onClick={
-            (skipHouseObj as Object3D).name === skipHouseMinName
-              ? (e: ThreeEvent<Event>) =>
-                  setSelectedModelName(e.eventObject.name)
-              : null
-          }
+          onClick={handleClick}
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
         >

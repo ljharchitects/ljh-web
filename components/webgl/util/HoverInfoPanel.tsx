@@ -1,13 +1,10 @@
 import { Html } from "@react-three/drei";
 import { FunctionComponent } from "react";
-import { Vector3 } from "three";
+import { Vector3 } from "@react-three/fiber";
 import style from "../../../styles/components/info.module.css";
 
 interface IHoverInfoPanel {
-  position:
-    | Vector3
-    | Parameters<Vector3["set"]>
-    | Parameters<Vector3["setScalar"]>[0];
+  position: Vector3;
   hover: boolean;
   isSelected: boolean;
   projectNo: string;
