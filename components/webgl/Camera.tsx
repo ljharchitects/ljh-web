@@ -6,9 +6,8 @@ import {
   worldCamParams,
   worldConParams,
   firstPersonConParams,
-  skipHouseTransitionParams,
-  worldTransitionParams,
   movePosition,
+  camConTransitionParams as setCamConTransition,
 } from "./util/CamConParams";
 import { ModelName } from "./util/ModelName";
 import { IorbitControl } from "../../types";
@@ -16,7 +15,24 @@ import { useFrame } from "@react-three/fiber";
 import useSelectedModelNameStore from "../util/store/SelectModelStore";
 import { Interaction } from "./util/Interactions/CameraMove";
 import { useJoystickMoveStore } from "../util/store/JoystickMoveStore";
+import { skipHouseCamPos, skipHouseConTarget } from "./world/SkipHouse";
+import {
+  viewOptimizationCamPos,
+  viewOptimizationTarget,
+} from "./world/ViewOptimization";
 // import { JoystickController } from "./util/Interactions/JoystickController";
+
+const worldCamPos = {
+  x: -110,
+  y: 150,
+  z: 200,
+};
+
+const worldConTarget = {
+  x: 0,
+  y: 0,
+  z: 0,
+};
 
 const Camera: FunctionComponent = () => {
   const selectedModelName = useSelectedModelNameStore(
@@ -33,7 +49,6 @@ const Camera: FunctionComponent = () => {
   const camRef = useRef<PerspectiveCameraImpl>(null);
   const conRef = useRef<OrbitControlsImpl>(null);
   const [isAutoRotate, setIsAutoRotate] = useState(true);
-  const skipHouseMinName: ModelName = "skipHouseMin";
 
   // AUTO ROTATE
   const handleStopRotate = () => {
@@ -49,16 +64,33 @@ const Camera: FunctionComponent = () => {
   }, []);
 
   // TRANSITION
+  const skipHouseMinName: ModelName = "skipHouseMin";
+  const ViewOptimizationName: ModelName = "ViewOptimizationMin";
   useEffect(() => {
     switch (selectedModelName) {
       case skipHouseMinName:
         setConParams(firstPersonConParams);
-        skipHouseTransitionParams(camRef, conRef);
+        setCamConTransition(
+          camRef,
+          conRef,
+          skipHouseCamPos,
+          skipHouseConTarget,
+          100
+        );
+        break;
+      case ViewOptimizationName:
+        setCamConTransition(
+          camRef,
+          conRef,
+          viewOptimizationCamPos,
+          viewOptimizationTarget,
+          70
+        );
         break;
 
       default:
         setConParams(worldConParams);
-        worldTransitionParams(camRef, conRef);
+        setCamConTransition(camRef, conRef, worldCamPos, worldConTarget);
         setIsAutoRotate(true);
         break;
     }

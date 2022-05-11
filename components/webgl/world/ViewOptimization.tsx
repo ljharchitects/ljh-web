@@ -1,12 +1,26 @@
-import { GroupProps } from "@react-three/fiber";
-import { FunctionComponent, Suspense, useEffect, useState } from "react";
-import { Object3D, Vector3 } from "three";
+import { ThreeEvent } from "@react-three/fiber";
+import { Suspense, useEffect, useState } from "react";
+import { Object3D } from "three";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
 import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import HoverInfoPanel from "../util/HoverInfoPanel";
 import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
 import { ModelName } from "../util/ModelName";
 import FutsalPlayGround from "./FutsalPlayGround";
+
+// Params
+export const viewOptimizationCamPos = {
+  x: -58,
+  y: 10,
+  z: -100,
+};
+
+export const viewOptimizationTarget = {
+  ...viewOptimizationCamPos,
+  x: viewOptimizationCamPos.x - 1,
+  y: viewOptimizationCamPos.y - 0.5,
+  z: viewOptimizationCamPos.z - 1,
+};
 
 const ViewOptimization = () => {
   // const OceanRndPath = "../../models/world/world_ocean_rnd_min.glb";
@@ -17,11 +31,12 @@ const ViewOptimization = () => {
     ViewOptimizationName
   );
   ViewOptimizationObj.position.set(-90, 0, -130);
-  // ViewOptimizationObj.position.x = -80;
-  // ViewOptimizationObj.position.z = -100;
 
   const selectedModelName = useSelectedModelNameStore(
     (state) => state.selectedModelName
+  );
+  const setSelectedModelName = useSelectedModelNameStore(
+    (state) => state.setSelectedModelName
   );
 
   const isSelected = selectedModelName === ViewOptimizationName;
@@ -32,10 +47,28 @@ const ViewOptimization = () => {
       hoverChangeMaterial(hover, ViewOptimizationObj as Object3D);
     }
   });
+
+  // const isSelected = selectedModelName === skipHouseMinName;
+  useEffect(() => {
+    if (isSelected) {
+      // 선택 됐을때
+      // setSkipHouseOjb(skipHouseDetail);
+    } else {
+      // setSkipHouseOjb(skipHouseMin);
+    }
+  }, [isSelected]);
+
+  const handleClick = (e: ThreeEvent<Event>) => {
+    if ((ViewOptimizationObj as Object3D).name === ViewOptimizationName) {
+      setSelectedModelName(e.eventObject.name);
+    }
+  };
+
   return (
     <>
       <Suspense fallback={null}>
         <primitive
+          onClick={handleClick}
           onPointerOver={() => setHover(true)}
           onPointerOut={() => setHover(false)}
           object={ViewOptimizationObj}

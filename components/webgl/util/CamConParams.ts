@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import gsap from "gsap";
-import { RefObject, Dispatch, SetStateAction } from "react";
+import { RefObject } from "react";
 import type { PerspectiveCamera as PerspectiveCameraImpl } from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
@@ -32,74 +32,35 @@ const defaultGsapParams = {
   ease: "expo",
 };
 
-const worldCamPos = {
-  x: -110,
-  y: 150,
-  z: 200,
+type Postition = {
+  x: number;
+  y: number;
+  z: number;
 };
 
-const worldConTarget = {
-  x: 0,
-  y: 0,
-  z: 0,
-};
-
-export const worldTransitionParams = (
+export const camConTransitionParams = (
   camRef: RefObject<PerspectiveCameraImpl>,
-  conRef: RefObject<OrbitControlsImpl>
+  conRef: RefObject<OrbitControlsImpl>,
+  camPostition: Postition,
+  conTarget: Postition,
+  fov = 40
 ) => {
   if (camRef.current && conRef.current) {
     return (
       gsap.to(camRef.current, {
         ...defaultGsapParams,
-        fov: 40,
-        onUpdate: () => {
-          camRef.current!.updateProjectionMatrix();
-        },
-      }),
-      gsap.to(camRef.current.position, {
-        ...defaultGsapParams,
-        ...worldCamPos,
-      }),
-      gsap.to(conRef.current.target, {
-        ...defaultGsapParams,
-        ...worldConTarget,
-      })
-    );
-  }
-};
-
-const skipHouseCamPos = {
-  x: 45,
-  y: 1,
-  z: 50,
-};
-
-const skipHouseConTarget = {
-  ...skipHouseCamPos,
-  z: skipHouseCamPos.z - 1,
-};
-
-export const skipHouseTransitionParams = (
-  camRef: RefObject<PerspectiveCameraImpl>,
-  conRef: RefObject<OrbitControlsImpl>
-) => {
-  if (camRef.current && conRef.current) {
-    return (
-      gsap.to(camRef.current, {
-        ...defaultGsapParams,
-        fov: 100,
+        fov: fov,
         onUpdate: () => {
           camRef.current?.updateProjectionMatrix();
         },
       }),
       gsap.to(camRef.current.position, {
         ...defaultGsapParams,
-        ...skipHouseCamPos,
+        ...camPostition,
       }),
       gsap.to(conRef.current.target, {
         ...defaultGsapParams,
-        ...skipHouseConTarget,
+        ...conTarget,
       })
     );
   }
@@ -127,9 +88,6 @@ export const movePosition = (
     return;
   }
 
-  // let nippleMoveForward = 0;
-  // let nippleMoveRight = 0;
-  // let nippleMoveUp = 0;
   let speed = 100;
   let velocity = new THREE.Vector3();
   let direction = new THREE.Vector3();

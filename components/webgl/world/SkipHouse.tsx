@@ -8,7 +8,20 @@ import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
 import HoverInfoPanel from "../util/HoverInfoPanel";
 import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 
+// Params
+export const skipHouseCamPos = {
+  x: 45,
+  y: 1,
+  z: 50,
+};
+
+export const skipHouseConTarget = {
+  ...skipHouseCamPos,
+  z: skipHouseCamPos.z - 1,
+};
+
 const SkipHouse: FunctionComponent = () => {
+  // Store
   const selectedModelName = useSelectedModelNameStore(
     (state) => state.selectedModelName
   );
@@ -18,16 +31,13 @@ const SkipHouse: FunctionComponent = () => {
 
   // Minimal model
   const skipHousePath = "../../models/world/skip_House.min.3dm";
-  // const skipHousePath = "../../models/world/skip_House.min.glb";
   const skipHouseMinName: ModelName = "skipHouseMin";
   const skipHouseMin = RhinoModelLoadHelper(skipHousePath, skipHouseMinName);
-  // const skipHouseMin = GltfModelLoadHelper(skipHousePath, skipHouseMinName);
 
   const [skipHouseObj, setSkipHouseOjb] = useState(skipHouseMin);
 
   // Detail model
   const skipHouseDetailPath = "../../models/detail/skip_house_com.glb";
-  // const skipHouseDetailPath = "../../models/detail/skip_house.glb";
   const skipHouseDetailName: ModelName = "skipHouseDetail";
   const skipHouseDetail = GltfModelLoadHelper(
     skipHouseDetailPath,
@@ -41,7 +51,7 @@ const SkipHouse: FunctionComponent = () => {
     } else {
       setSkipHouseOjb(skipHouseMin);
     }
-  }, [isSelected]);
+  }, [isSelected, skipHouseDetail, skipHouseMin]);
 
   const [hover, setHover] = useState(false);
   useEffect(() => {
