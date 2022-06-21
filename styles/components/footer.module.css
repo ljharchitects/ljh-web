@@ -1,0 +1,39 @@
+@value mediaQuery from "../common/sizes.css";
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  /* font-size: 1rem; */
+}
+
+.footer_item {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+}
+
+.hr {
+  width: mediaQuery;
+}
+
+.contents {
+  font-size: 1rem;
+  font-weight: 100;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .footer {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .hr {
+    width: calc(100vw - 2rem);
+  }
+  .contents {
+    font-size: 0.8rem;
+  }
+}

@@ -1,4 +1,4 @@
-@value logoHeight, mediaQuery from "../common/sizes.css";
+@value logoHeight, mediaQuery, pcMarginTop, pcMarginLeft, mobileMarginLeft, mobileMarginTop from "../common/sizes.css";
 
 .container {
   position: fixed;
@@ -6,14 +6,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30px;
+  padding: pcMarginTop pcMarginLeft;
   z-index: 3;
   /* background-color: aqua; */
-}
-
-.item {
-  align-items: center;
-  vertical-align: middle;
 }
 
 .logoBlock {
@@ -29,10 +24,21 @@
   font-weight: bold;
 }
 
-.anno {
-  display: inline;
-  margin-left: 10px;
-  font-family: "Helvetica Neue";
-  font-size: 1rem;
-  font-weight: 100;
+@media screen and (max-width: mediaQuery) {
+  .container {
+    padding: mobileMarginTop mobileMarginLeft;
+  }
+
+  .item {
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .anno {
+    display: inline;
+    margin-left: 10px;
+    font-family: "Helvetica Neue";
+    font-size: 1rem;
+    font-weight: 100;
+  }
 }

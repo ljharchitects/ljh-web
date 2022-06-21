@@ -21,3 +21,16 @@ a:hover {
 * {
   box-sizing: border-box;
 }
+
+h1 {
+  font-weight: 500;
+}
+
+ol li::before {
+  content: counter(list-counter) ". ";
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+}

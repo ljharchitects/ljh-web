@@ -17,6 +17,7 @@ export interface Ifrontmatter {
   date: Date;
   excerpt: string;
   cover_image: string;
+  tags: string[];
 }
 
 export type loaderType = "rhino3dm" | "gltf";

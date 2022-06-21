@@ -1,42 +1,70 @@
+@value contentMarginTop, mobileFeatureImgHeight, pcFeatureImgHeight, mobileMarginLeft, pcMarginTop, pcMarginLeft, mediaQuery from "../common/sizes.css";
+
 .card {
-  /* background-color: aqua; */
-  margin: 0;
-  padding: 0;
-  scrollbar-width: none;
-}
-
-.card::-webkit-scrollbar {
-  display: none;
-}
-
-.container {
-  margin: 0;
-  padding: 0;
+  height: 100vh;
   position: relative;
-  scrollbar-width: none;
+  display: flex;
+  justify-content: center;
 }
 
-.container::-webkit-scrollbar {
-  display: none;
+.featureImage {
+  position: absolute;
+  height: pcFeatureImgHeight;
+  width: 100%;
+}
+
+.textContainer {
+  margin: calc(pcFeatureImgHeight + 3rem) pcMarginLeft;
+  height: calc(100vh - pcFeatureImgHeight - contentMarginTop - 3rem);
+  position: absolute;
+  width: mediaQuery;
 }
 
 .title {
-  /* background-color: aqua; */
-  /* color: rgba(255, 255, 255, 0.8); */
-  /* color: rgba(200, 200, 200, 0.8); */
   color: rgba(0, 0, 0, 0.8);
-  /* color: rgba(50, 50, 50, 0.8); */
-  /* mix-blend-mode: difference; */
-  position: fixed;
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  top: 50%;
-  width: 100%;
-  z-index: 3;
+  font-size: 1.5rem;
 }
 
-.hide {
-  position: fixed;
-  display: none;
+.excerpt {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  font-weight: 100;
+}
+
+.tags {
+  position: relative;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 100;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .featureImage {
+    top: contentMarginTop;
+    height: mobileFeatureImgHeight;
+  }
+
+  .textContainer {
+    width: 100%;
+    margin: calc(mobileFeatureImgHeight + contentMarginTop + 2rem) 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: calc(100vh - mobileFeatureImgHeight - contentMarginTop - 2rem);
+  }
+
+  .title {
+    width: 75%;
+    font-size: 1.2rem;
+  }
+
+  .excerpt {
+    font-size: 0.8rem;
+  }
+
+  .tag {
+    font-size: 0.5rem;
+  }
 }

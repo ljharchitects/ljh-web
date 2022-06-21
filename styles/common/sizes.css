@@ -1,3 +1,12 @@
 @value mediaQuery: 40rem;
 @value headerHeight: 3rem;
 @value logoHeight: 100px;
+@value contentMarginTop: 4rem;
+
+@value mobileMarginTop: 1rem;
+@value mobileMarginLeft: 1rem;
+@value mobileFeatureImgHeight: 60vh;
+
+@value pcMarginTop: 1rem;
+@value pcMarginLeft: 2rem;
+@value pcFeatureImgHeight: 70vh;

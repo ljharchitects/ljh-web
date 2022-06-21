@@ -1,42 +1,60 @@
+@value contentMarginTop, mobileMarginTop, mobileMarginLeft, mobileFeatureImgHeight, pcFeatureImgHeight, pcMarginLeft, mediaQuery from "../common/sizes.css";
+
 .card {
-  padding-top: 100px;
-}
-
-.postTitle {
-  font-weight: 500;
-  font-size: 2rem;
-  margin-left: 2rem;
-}
-
-.postDate {
-  font-weight: 100;
-  font-size: 0.75rem;
-  margin-left: 2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .coverImg {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
+  width: 100%;
+  height: pcFeatureImgHeight;
+  position: absolute;
+}
+
+.textContainer {
+  margin-top: pcFeatureImgHeight;
+  width: mediaQuery;
+}
+
+.postTitle {
+  margin-top: 4rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 1.5rem;
   width: 100%;
 }
 
+.excerpt {
+  margin-top: 3rem;
+  font-weight: 100;
+  font-size: 1.2rem;
+}
+
+.postDate {
+  margin-top: 1rem;
+  font-weight: 100;
+  font-size: 0.8rem;
+}
 .postBody {
-  margin-bottom: 300px;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  font-weight: 300;
+  font-size: 1rem;
 }
 
 .postBody p {
   line-height: calc(1ex / 0.32);
-  margin: 1rem 2rem;
-  font-weight: 300;
+  margin-top: 3rem;
 }
 
 .postBody li {
-  margin-left: 1rem;
+  list-style: none;
+  counter-increment: list-counter;
+  margin-top: 3rem;
 }
 
 .postBody li p {
-  margin-left: 0rem;
+  display: inline;
 }
 
 .postBody div {
@@ -45,4 +63,47 @@
 
 .postBody hr {
   margin: 1rem 2rem;
+}
+
+/* .postFooter {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+} */
+
+@media screen and (max-width: mediaQuery) {
+  .card {
+    padding-top: contentMarginTop;
+  }
+
+  .coverImg {
+    height: mobileFeatureImgHeight;
+  }
+
+  .textContainer {
+    margin-top: mobileFeatureImgHeight;
+    padding: 0 mobileMarginLeft;
+    width: 100%;
+  }
+
+  .postTitle {
+    font-size: 1.2rem;
+    width: 75%;
+  }
+
+  .excerpt {
+    font-size: 1rem;
+  }
+
+  .postDate {
+    margin-top: 1.5rem;
+    font-weight: 100;
+    font-size: 0.75rem;
+  }
+
+  .postBody {
+    margin-bottom: 50vw;
+    font-size: 15px;
+  }
 }

@@ -10,12 +10,12 @@ const Header = () => {
     <header>
       <div className={style.container}>
         <div className={style.item}>
-          {/* <Link href="/" passHref> */}
-          {/* <a className={style.logoBlock}> */}
-          {/* <div className={style.logo}></div> */}
-          <div className={style.logoTxt}>ljh</div>
-          {/* </a> */}
-          {/* </Link> */}
+          <Link href="/" passHref>
+            {/* <a className={style.logoBlock}> */}
+            {/* <div className={style.logo}></div> */}
+            <div className={style.logoTxt}>ljh</div>
+            {/* </a> */}
+          </Link>
         </div>
         {/* <div className={style.item}>
           <Menu open={open} setOpen={setOpen} />
