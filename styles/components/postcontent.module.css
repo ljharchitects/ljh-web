@@ -65,6 +65,15 @@
   margin: 1rem 2rem;
 }
 
+.postBody figure {
+  margin: 3rem 0;
+}
+
+.postBody figcaption {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 /* .postFooter {
   position: relative;
   display: flex;
