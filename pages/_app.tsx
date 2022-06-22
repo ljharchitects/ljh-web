@@ -3,10 +3,12 @@ import Header from "../components/Header";
 import style from "../styles/_app.module.css";
 import "../styles/globals.css";
 import Footer from "../components/Footer";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <GoogleAnalytics />
       <Header />
       {/* <Nav /> */}
 
