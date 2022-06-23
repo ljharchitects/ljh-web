@@ -3,14 +3,13 @@ import Header from "../components/Header";
 import style from "../styles/_app.module.css";
 import "../styles/globals.css";
 import Footer from "../components/Footer";
-import GoogleAnalytics from "../components/GoogleAnalytics";
+import GoogleAnalytics from "../components/util/GoogleAnalytics";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GoogleAnalytics />
       <Header />
-      {/* <Nav /> */}
 
       <main className={style.container}>
         <Component {...pageProps} />

@@ -12,7 +12,7 @@ const Nav = memo(({ open, setOpen }) => (
         </Link>
       </li>
       <li className={style.item}>
-        <Link href="/blog">
+        <Link href="/">
           <a>Log</a>
         </Link>
       </li>
