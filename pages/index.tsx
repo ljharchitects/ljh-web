@@ -5,7 +5,6 @@ import path from "path";
 import matter from "gray-matter";
 import Head from "next/head";
 import Post from "../components/Post";
-import InfiniteScrollLoop from "../components/InfiniteScrollLoop";
 import { sortByDate } from "../utils";
 
 export const Posts: NextPage<{ posts: Ipost[] }> = ({ posts }) => {
@@ -18,11 +17,6 @@ export const Posts: NextPage<{ posts: Ipost[] }> = ({ posts }) => {
         {posts.map((post, index) => (
           <Post key={index} post={post} />
         ))}
-        {/* <InfiniteScrollLoop>
-          {posts.map((post, index) => (
-            <Post key={index} post={post} />
-          ))}
-        </InfiniteScrollLoop> */}
       </div>
     </>
   );

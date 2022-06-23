@@ -1,37 +1,42 @@
 @value mediaQuery, headerHeight from "../common/sizes.css";
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 3rem);
+}
+.article {
+  margin: auto;
+  font-weight: 500;
+  width: calc(mediaQuery - 20rem);
+}
+
+.name {
+  font-weight: 500;
+  margin: 0;
+  font-size: 1.5rem;
+}
+.nameTitle {
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.section {
+  margin-top: 5rem;
+  margin-left: 1rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.section ul {
+  padding: 0;
+}
+
 @media only screen and (max-width: mediaQuery) {
-  /* .contianer {
-    margin: 100px 100px;
-  } */
   .article {
-    position: absolute;
-    margin: 150px 30px;
-    font-weight: 500;
-  }
-
-  .name {
-    font-weight: 500;
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  .nameTitle {
-    font-weight: 300;
-    font-size: 0.75rem;
-    margin-top: 5px;
-  }
-
-  .divider {
-    margin: 50px 0;
-    color: rgba(200, 200, 200, 1);
-  }
-
-  .contact {
-  }
-
-  .strong {
-    padding: 0 5px;
-    background-color: rgba(100, 100, 100, 1);
-    color: white;
+    margin: auto 1rem;
   }
 }
