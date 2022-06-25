@@ -1,11 +1,11 @@
-import { FunctionComponent, Suspense, useEffect, useState } from "react";
-import { Object3D } from "three";
+import { Object3DNode } from "@react-three/fiber";
+import { EffectComposer, Outline } from "@react-three/postprocessing";
+import { FunctionComponent, Suspense, useRef } from "react";
+import { Event, Object3D } from "three";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
 import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
 import HoverInfoPanel from "../util/HoverInfoPanel";
-import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
 import { ModelName } from "../util/ModelName";
-import RhinoModelLoadHelper from "../util/RhinoModelLoadHelper";
 
 const OceanRnd: FunctionComponent = () => {
   // const OceanRndPath = "../../models/world/world_ocean_rnd_min.glb";
@@ -16,31 +16,31 @@ const OceanRnd: FunctionComponent = () => {
   const selectedModelName = useSelectedModelNameStore(
     (state) => state.selectedModelName
   );
+  const hoveredModel = useSelectedModelNameStore((state) => state.hoveredModel);
+  const setHoveredModel = useSelectedModelNameStore(
+    (state) => state.setHoveredModel
+  );
 
   const isSelected = selectedModelName === OceanRndName;
 
-  const [hover, setHover] = useState(false);
-  useEffect(() => {
-    if (!isSelected) {
-      hoverChangeMaterial(hover, OceanRndObj as Object3D);
-    }
-  });
+  const ref = useRef<Object3DNode<Object3D, Event>>();
   return (
     <>
       <Suspense fallback={null}>
         <primitive
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
           object={OceanRndObj}
-        />
-        <HoverInfoPanel
-          position={[80, 40, -80]}
-          hover={hover}
-          isSelected={isSelected}
-          projectNo="A-0220"
-          projectName="해양생태과학관"
+          ref={ref}
+          onPointerOver={() => setHoveredModel(ref)}
+          onPointerOut={() => setHoveredModel(null)}
         />
       </Suspense>
+      <HoverInfoPanel
+        position={[80, 40, -80]}
+        hover={hoveredModel && hoveredModel.current.name === OceanRndName}
+        isSelected={isSelected}
+        projectNo="A-0220"
+        projectName="해양생태과학관"
+      />
     </>
   );
 };

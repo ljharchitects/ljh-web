@@ -4,11 +4,13 @@ import style from "../styles/_app.module.css";
 import "../styles/globals.css";
 import Footer from "../components/Footer";
 import GoogleAnalytics from "../components/util/GoogleAnalytics";
+import Menu from "../components/menu/Menu";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GoogleAnalytics />
+      <Menu />
       <Header />
 
       <main className={style.container}>

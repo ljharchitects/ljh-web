@@ -30,8 +30,6 @@ export const PostPage: NextPage<IpostPage> = ({
           <Image
             src={cover_image}
             alt="cover_image"
-            width="100%"
-            height="100%"
             layout="fill"
             objectFit="cover"
           />

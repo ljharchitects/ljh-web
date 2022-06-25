@@ -5,6 +5,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  pointer-events: none;
 }
 
 .featureImage {
@@ -18,6 +19,8 @@
   height: calc(100vh - pcFeatureImgHeight - contentMarginTop - 3rem);
   position: absolute;
   width: mediaQuery;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .title {

@@ -2,13 +2,12 @@
 
 .container {
   position: fixed;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: pcMarginTop pcMarginLeft;
-  z-index: 3;
-  /* background-color: aqua; */
+  z-index: 1;
 }
 
 .logoBlock {
@@ -20,8 +19,9 @@
   cursor: pointer;
   display: inline;
   font-family: "Helvetica Neue";
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: bold;
+  user-select: none;
 }
 
 @media screen and (max-width: mediaQuery) {

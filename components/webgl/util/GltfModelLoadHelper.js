@@ -19,6 +19,7 @@ export const GltfModelLoadHelper = (path, name = path) => {
   modelObj.traverse((child) => {
     child.castShadow = true;
     child.receiveShadow = true;
+    child.layers.enable(10)
   })
   return modelObj;
 };

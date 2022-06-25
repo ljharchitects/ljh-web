@@ -10,6 +10,9 @@ export const RhinoModelLoadHelper = (path, name = path) => {
   modelObj.receiveShadow = true;
   modelObj.rotation.x = -Math.PI / 2;
   modelObj.name = name
+  modelObj.traverse((child) => {
+    child.layers.enable(10)
+  })
   return modelObj;
 };
 

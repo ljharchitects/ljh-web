@@ -3,10 +3,10 @@
 @value logoHeight: 100px;
 @value contentMarginTop: 4rem;
 
-@value mobileMarginTop: 1rem;
+@value mobileMarginTop: 0.9rem;
 @value mobileMarginLeft: 1rem;
 @value mobileFeatureImgHeight: 60vh;
 
 @value pcMarginTop: 1rem;
-@value pcMarginLeft: 2rem;
+@value pcMarginLeft: 2.5rem;
 @value pcFeatureImgHeight: 70vh;

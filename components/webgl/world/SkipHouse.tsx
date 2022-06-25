@@ -1,7 +1,13 @@
-import { ThreeEvent, useLoader } from "@react-three/fiber";
-import { FunctionComponent, Suspense, useEffect, useState } from "react";
+import { Object3DNode, ThreeEvent, useLoader } from "@react-three/fiber";
+import {
+  FunctionComponent,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import GltfModelLoadHelper from "../util/GltfModelLoadHelper";
-import { ModelName } from "../util/ModelName";
+import { ModelName, ModelNameEnum } from "../util/ModelName";
 import useSelectedModelNameStore from "../../util/store/SelectModelStore";
 import { Object3D } from "three";
 import { hoverChangeMaterial } from "../util/Interactions/HoverMaterial";
@@ -28,10 +34,15 @@ const SkipHouse: FunctionComponent = () => {
   const setSelectedModelName = useSelectedModelNameStore(
     (state) => state.setSelectedModelName
   );
+  const hoveredModel = useSelectedModelNameStore((state) => state.hoveredModel);
+  const setHoveredModel = useSelectedModelNameStore(
+    (state) => state.setHoveredModel
+  );
 
   // Minimal model
   const skipHousePath = "../../models/world/skip_House.min.3dm";
   const skipHouseMinName: ModelName = "skipHouseMin";
+  const skipHouseMinEnum = ModelNameEnum.skipHouseMin;
   const skipHouseMin = RhinoModelLoadHelper(skipHousePath, skipHouseMinName);
 
   const [skipHouseObj, setSkipHouseOjb] = useState(skipHouseMin);
@@ -65,19 +76,22 @@ const SkipHouse: FunctionComponent = () => {
       setSelectedModelName(e.eventObject.name);
     }
   };
+  const ref = useRef<Object3DNode<Object3D, Event>>();
 
   return (
     <>
       <Suspense fallback={null}>
         <primitive
+          ref={ref}
           object={skipHouseObj}
           onClick={handleClick}
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
+          onPointerOver={() => setHoveredModel(ref)}
+          onPointerOut={() => setHoveredModel(null)}
         ></primitive>
         <HoverInfoPanel
           position={[55, 25, 35]}
-          hover={hover}
+          hover={hoveredModel && hoveredModel.current.name === skipHouseMinName}
+          // hover={hoveredModel}
           isSelected={isSelected}
           projectNo="A-0121"
           projectName="SKIP_HOUSE"

@@ -19,9 +19,7 @@ const Post: NextPage<Ipost> = ({ post }) => {
           <div className={style.featureImage}>
             <Image
               src={post.frontmatter.cover_image}
-              alt=""
-              width="100%"
-              height="100%"
+              alt="cover_image"
               layout="fill"
               objectFit="cover"
             />

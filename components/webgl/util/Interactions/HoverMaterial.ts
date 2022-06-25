@@ -6,11 +6,13 @@ const hoverChangeMaterial = (hover: boolean, targetObject: Object3D) => {
     targetObject.traverse((child) => {
       if (child instanceof Mesh) {
         if (child.userData.savedMaterial) {
-          child.material.color.setHex(0xe0e0e0);
+          child.material.color.setHex(child.userData.savedMaterial - 0x101010);
+          // child.material.color.setHex(0xe0e0e0);
           child.material.blending = THREE.NormalBlending;
         } else {
           child.userData.savedMaterial = child.material.color.getHex();
-          child.material.color.setHex(0xe0e0e0);
+          child.material.color.setHex(child.userData.savedMaterial - 0x101010);
+          // child.material.color.setHex(0xe0e0e0);
           // console.log(child.material.blending);
           // child.material.blending = THREE.AdditiveBlending;
           // child.material.blending = THREE.CustomBlending;

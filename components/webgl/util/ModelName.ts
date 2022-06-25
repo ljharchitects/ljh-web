@@ -4,3 +4,11 @@ export type ModelName =
   | "oceanRndMin"
   | "ViewOptimizationMin"
   | "FutsalPlayGround";
+
+export enum ModelNameEnum {
+  "skipHouseMin",
+  "skipHouseDetail",
+  "oceanRndMin",
+  "ViewOptimizationMin",
+  "FutsalPlayGround",
+}
