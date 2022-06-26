@@ -34,7 +34,7 @@ export const MenuItem: NextPage<IMenuItem> = ({ content, url, toggleOpen }) => {
       whileTap={{ scale: 0.95 }}
     >
       <Link href={url} passHref>
-        <a onClick={() => toggleOpen()}>
+        <a onClick={toggleOpen}>
           <div className="icon-placeholder" />
           <div className={s.text_placeholder}>{content}</div>
           {/* <div className="icon-placeholder" style={style} />
