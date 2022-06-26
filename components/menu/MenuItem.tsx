@@ -2,6 +2,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import s from "./menu.module.css";
 import { NextPage } from "next";
+import Link from "next/link";
 
 const variants = {
   open: {
@@ -22,19 +23,24 @@ const variants = {
 
 interface IMenuItem {
   content: string;
+  url: string;
+  toggleOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export const MenuItem: NextPage<IMenuItem> = ({ content }) => {
-  // const style = { border: `2px solid ${colors[i]}` };
+export const MenuItem: NextPage<IMenuItem> = ({ content, url, toggleOpen }) => {
   return (
     <motion.li
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <div className="icon-placeholder" />
-      <div className={s.text_placeholder}>{content}</div>
-      {/* <div className="icon-placeholder" style={style} />
+      <Link href={url} passHref>
+        <a onClick={() => toggleOpen()}>
+          <div className="icon-placeholder" />
+          <div className={s.text_placeholder}>{content}</div>
+          {/* <div className="icon-placeholder" style={style} />
       <div className={s.text_placeholder} style={style}> */}
+        </a>
+      </Link>
     </motion.li>
   );
 };

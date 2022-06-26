@@ -8,7 +8,7 @@ import style from "./menu.module.css";
 
 const sidebar = {
   open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at calc(100vw - 50px) 35px)`,
+    clipPath: `circle(${height * 2 + 200}px at calc(100vw - 60px) 35px)`,
     transition: {
       type: "spring",
       stiffness: 20,
@@ -50,12 +50,13 @@ const Menu = () => {
         custom={height}
         ref={containerRef}
         className={style.nav}
+        variants={isSmall ? mobileSidebar : sidebar}
       >
         <motion.div
           className={style.background}
-          variants={isSmall ? mobileSidebar : sidebar}
+          // variants={isSmall ? mobileSidebar : sidebar}
         />
-        <Navigation />
+        <Navigation toggleOpen={toggleOpen} />
         <MenuToggle toggle={() => toggleOpen()} />
       </motion.nav>
     </div>

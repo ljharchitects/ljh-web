@@ -12,14 +12,38 @@ const variants = {
   },
 };
 
-export const Navigation = () => (
-  <motion.ul variants={variants} className={s.navigation}>
-    <div className={s.nav_container}>
-      {itemIds.map((content, index) => (
-        <MenuItem content={content} key={index} className={s.item} />
-      ))}
-    </div>
-  </motion.ul>
-);
+export const Navigation = ({ toggleOpen }) => {
+  return (
+    <motion.ul variants={variants} className={s.navigation}>
+      <div className={s.nav_container}>
+        {itemIds.map(({ name, url }, index) => (
+          <MenuItem
+            content={name}
+            url={url}
+            key={index}
+            toggleOpen={toggleOpen}
+            className={s.item}
+          />
+        ))}
+        {/* {itemIds.map((content, index) => (
+          <MenuItem content={content} key={index} className={s.item} />
+        ))} */}
+      </div>
+    </motion.ul>
+  );
+};
 
-const itemIds = ["about", "log", "work"];
+const itemIds = [
+  {
+    name: "about",
+    url: "/about",
+  },
+  {
+    name: "log",
+    url: "/",
+  },
+  {
+    name: "work",
+    url: "/work",
+  },
+];

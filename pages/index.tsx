@@ -11,7 +11,7 @@ export const Posts: NextPage<{ posts: Ipost[] }> = ({ posts }) => {
   return (
     <>
       <Head>
-        <title>ljh | log</title>
+        <title>ljh | 이진환</title>
       </Head>
       <div className="posts">
         {posts.map((post, index) => (

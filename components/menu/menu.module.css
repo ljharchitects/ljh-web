@@ -4,7 +4,7 @@
 
 .container {
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
   overflow: hidden;
   padding: 0;
   margin: 0;
@@ -75,6 +75,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  pointer-events: none;
 }
 
 .text_placeholder {
@@ -85,6 +86,7 @@
   font-weight: 500;
   margin-top: 2rem;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .refresh {
