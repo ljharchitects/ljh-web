@@ -24,7 +24,7 @@ const variants = {
 interface IMenuItem {
   content: string;
   url: string;
-  toggleOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleOpen: (i?: number | undefined) => void;
 }
 export const MenuItem: NextPage<IMenuItem> = ({ content, url, toggleOpen }) => {
   return (
@@ -34,8 +34,8 @@ export const MenuItem: NextPage<IMenuItem> = ({ content, url, toggleOpen }) => {
       whileTap={{ scale: 0.95 }}
     >
       <Link href={url} passHref>
-        <a onClick={toggleOpen}>
-          <div className="icon-placeholder" />
+        <a onClick={() => toggleOpen()}>
+          {/* <div className="icon-placeholder" /> */}
           <div className={s.text_placeholder}>{content}</div>
           {/* <div className="icon-placeholder" style={style} />
       <div className={s.text_placeholder} style={style}> */}
