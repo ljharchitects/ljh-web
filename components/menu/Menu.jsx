@@ -50,11 +50,11 @@ const Menu = () => {
         custom={height}
         ref={containerRef}
         className={style.nav}
-        variants={isSmall ? mobileSidebar : sidebar}
+        // variants={isSmall ? mobileSidebar : sidebar}
       >
         <motion.div
           className={style.background}
-          // variants={isSmall ? mobileSidebar : sidebar}
+          variants={isSmall ? mobileSidebar : sidebar}
         />
         <Navigation toggleOpen={toggleOpen} />
         <MenuToggle toggle={toggleOpen} />
