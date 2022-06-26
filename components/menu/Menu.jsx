@@ -3,7 +3,7 @@ import { motion, useCycle } from "framer-motion";
 import { useDimensions } from "../util/use-dimensions";
 import { MenuToggle } from "./MenuToggle";
 import { Navigation } from "./Navigation";
-import { useMediaQuery } from "../util/MediaQuery";
+import { useMediaQuery } from "react-responsive";
 import style from "./menu.module.css";
 
 const sidebar = {
@@ -37,10 +37,11 @@ const mobileSidebar = {
 };
 
 const Menu = () => {
-  const isSmall = useMediaQuery("(max-width: 640px)");
+  const isSmall = useMediaQuery({ query: "(max-width: 640px)" });
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
+  const variants = isSmall ? mobileSidebar : sidebar;
 
   return (
     <div className={style.container}>
@@ -50,12 +51,8 @@ const Menu = () => {
         custom={height}
         ref={containerRef}
         className={style.nav}
-        variants={isSmall ? mobileSidebar : sidebar}
       >
-        <motion.div
-          className={style.background}
-          // variants={isSmall ? mobileSidebar : sidebar}
-        />
+        <motion.div className={style.background} variants={variants} />
         <Navigation toggleOpen={toggleOpen} />
         <MenuToggle toggle={toggleOpen} />
       </motion.nav>
