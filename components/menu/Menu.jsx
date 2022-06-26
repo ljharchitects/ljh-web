@@ -7,7 +7,7 @@ import { useMediaQuery } from "../util/MediaQuery";
 import style from "./menu.module.css";
 
 const sidebar = {
-  open: (height = 1000) => ({
+  open: (height = 3000) => ({
     clipPath: `circle(${height * 2 + 200}px at calc(100vw - 60px) 35px)`,
     transition: {
       type: "spring",
@@ -28,7 +28,7 @@ const sidebar = {
 
 const mobileSidebar = {
   ...sidebar,
-  open: (height = 1000) => ({
+  open: (height = 3000) => ({
     clipPath: `circle(${height * 2 + 200}px at calc(100vw - 50px) 35px)`,
   }),
   closed: {
