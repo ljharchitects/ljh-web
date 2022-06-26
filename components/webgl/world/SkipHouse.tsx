@@ -85,11 +85,13 @@ const SkipHouse: FunctionComponent = () => {
           ref={ref}
           object={skipHouseObj}
           onClick={handleClick}
+          // @ts-ignore
           onPointerOver={() => setHoveredModel(ref)}
           onPointerOut={() => setHoveredModel(null)}
         ></primitive>
         <HoverInfoPanel
           position={[55, 25, 35]}
+          // @ts-ignore
           hover={hoveredModel && hoveredModel.current.name === skipHouseMinName}
           // hover={hoveredModel}
           isSelected={isSelected}

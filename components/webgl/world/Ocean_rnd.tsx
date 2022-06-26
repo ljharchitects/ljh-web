@@ -30,12 +30,14 @@ const OceanRnd: FunctionComponent = () => {
         <primitive
           object={OceanRndObj}
           ref={ref}
+          // @ts-ignore
           onPointerOver={() => setHoveredModel(ref)}
           onPointerOut={() => setHoveredModel(null)}
         />
       </Suspense>
       <HoverInfoPanel
         position={[80, 40, -80]}
+        // @ts-ignore
         hover={hoveredModel && hoveredModel.current.name === OceanRndName}
         isSelected={isSelected}
         projectNo="A-0220"

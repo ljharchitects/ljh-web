@@ -12,22 +12,19 @@ const variants = {
   },
 };
 
-export const Navigation = ({ toggleOpen }) => {
+interface INavigation {
+  toggleOpen: (i?: number | undefined) => void;
+}
+
+export const Navigation: React.FC<INavigation> = ({ toggleOpen }) => {
   return (
     <motion.ul variants={variants} className={s.navigation}>
       <div className={s.nav_container}>
         {itemIds.map(({ name, url }, index) => (
-          <MenuItem
-            content={name}
-            url={url}
-            key={index}
-            toggleOpen={toggleOpen}
-            className={s.item}
-          />
+          <div key={index} className={s.item}>
+            <MenuItem content={name} url={url} toggleOpen={toggleOpen} />
+          </div>
         ))}
-        {/* {itemIds.map((content, index) => (
-          <MenuItem content={content} key={index} className={s.item} />
-        ))} */}
       </div>
     </motion.ul>
   );

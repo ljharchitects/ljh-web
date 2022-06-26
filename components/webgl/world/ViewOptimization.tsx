@@ -84,6 +84,7 @@ const ViewOptimization = () => {
         {/* <FutsalPlayGround position={[30, 0, -50]} /> */}
         <HoverInfoPanel
           position={[-75, 35, -110]}
+          // @ts-ignore
           hover={hover}
           isSelected={isSelected}
           projectNo="A-0322"

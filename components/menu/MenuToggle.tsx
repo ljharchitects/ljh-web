@@ -1,8 +1,10 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import style from "./menu.module.css";
+import { Props } from "framer-motion/types/types";
+import { NextPage } from "next";
 
-const Path = (props) => (
+const Path = (props: Props) => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
@@ -12,8 +14,12 @@ const Path = (props) => (
   />
 );
 
-export const MenuToggle = ({ toggle }) => (
-  <button onClick={toggle} className={style.button}>
+interface IMenuToggle {
+  toggle: (i?: number | undefined) => void;
+}
+
+export const MenuToggle: NextPage<IMenuToggle> = ({ toggle }) => (
+  <button onClick={() => toggle()} className={style.button}>
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
         variants={{

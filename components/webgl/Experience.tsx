@@ -40,6 +40,7 @@ const Experience = () => {
         <EffectComposer autoClear={false}>
           {/* <EffectComposer multisampling={8} autoClear={false}> */}
           <Outline
+            // @ts-ignore
             selection={hoveredModel}
             // selectionLayer={10}
             blur
