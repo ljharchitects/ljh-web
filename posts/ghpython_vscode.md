@@ -27,7 +27,7 @@ tags:
 
 ### 준비물
 
-우선 준비물에 필요한 프로그램들을 다운 받고 설치합니다. 참고 이미지는 맥이지만, 해당 메뉴들의 위치는 비슷하기때문에 윈도우에서도 별 무리 없이 따라할 수 있을거라고 생각합니다.
+우선 준비물에 필요한 프로그램들을 다운 받고 설치합니다.
 
 1. [visual studio code][1]<br>
    파이참도 좋은 툴이지만, 아무래도 무료라는 점에서 vscode를 이용해서 설명하겠습니다.
@@ -48,7 +48,7 @@ tags:
 
 <figure>
   <img src="/images/posts/ghpython_vscode/ghpython_vscode-007.webp" width="100%" height="100%"/>
-  <figcaption>탐색기 주소창에 cmd. 라고 입력하면 해당 경로의 명령 프롬프트 창이 열립니다</figcaption>
+  <figcaption>파이썬이 정상적으로 설치되었는지 확인하고, 라이노와 그래스호퍼 stubs를 설치합니다</figcaption>
 </figure>
 
 커맨드 창에서 아래와 같이 입력합니다.
@@ -62,6 +62,8 @@ pip --version  # pip 버전을 확인합니다
 
 pip install rhino-stubs grasshopper-stubs  # 라이노와 그래스호퍼 타입 힌트를 위해 stubs를 설치합니다
 ```
+
+### visual studio code 설정
 
 <figure>
   <img src="/images/posts/ghpython_vscode/ghpython_vscode-008.webp" width="100%" height="100%"/>

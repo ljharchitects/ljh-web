@@ -80,6 +80,10 @@
   pointer-events: none;
 }
 
+.nav_hidden {
+  display: none;
+}
+
 .text_placeholder {
   position: relative;
   text-align: center;

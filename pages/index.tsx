@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import Head from "next/head";
 import Post from "../components/Post";
 import { sortByDate } from "../utils";
+import Layout from "../components/Layout";
 
 export const Posts: NextPage<{ posts: Ipost[] }> = ({ posts }) => {
   return (
@@ -13,11 +14,13 @@ export const Posts: NextPage<{ posts: Ipost[] }> = ({ posts }) => {
       <Head>
         <title>ljh | 이진환</title>
       </Head>
-      <div className="posts">
-        {posts.map((post, index) => (
-          <Post key={index} post={post} />
-        ))}
-      </div>
+      <Layout>
+        <div className="posts">
+          {posts.map((post, index) => (
+            <Post key={index} post={post} />
+          ))}
+        </div>
+      </Layout>
     </>
   );
 };

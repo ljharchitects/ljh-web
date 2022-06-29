@@ -9,6 +9,8 @@ import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import style from "../../styles/components/postcontent.module.css";
 import "highlight.js/styles/default.css";
+import Layout from "../../components/Layout";
+import { markedOptions } from "../../utils/markedOptions";
 
 export interface IpostPage {
   frontmatter: Ifrontmatter;
@@ -24,22 +26,7 @@ export const PostPage: NextPage<IpostPage> = ({
   prev_slug,
   next_slug,
 }) => {
-  marked.setOptions({
-    renderer: new marked.Renderer(),
-    highlight: function (code, lang) {
-      const hljs = require("highlight.js");
-      const language = hljs.getLanguage(lang) ? lang : "bash";
-      return hljs.highlight(code, { language }).value;
-    },
-    langPrefix: "hljs language-", // highlight.js css expects a top-level 'hljs' class.
-    pedantic: false,
-    gfm: true,
-    breaks: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    xhtml: false,
-  });
+  marked.setOptions(markedOptions);
   console.log(marked.parse(content));
   return (
     <>
@@ -49,26 +36,27 @@ export const PostPage: NextPage<IpostPage> = ({
           href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css"
         ></link>
       </Head> */}
-      <div className={style.card}>
-        <div className={style.coverImg}>
-          <Image
-            src={cover_image}
-            alt="cover_image"
-            layout="fill"
-            objectFit="cover"
-          />
-        </div>
-        <div className={style.textContainer}>
-          <h1 className={style.postTitle}>{title}</h1>
-          <div className={style.excerpt}>{`${excerpt}`}</div>
-          <div className={style.postDate}>{`${date}`}</div>
-          <article className={style.postBody}>
-            <div
-              dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
-            ></div>
-            {/* <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div> */}
-          </article>
-          {/* <div className={style.postFooter}>
+      <Layout>
+        <div className={style.card}>
+          <div className={style.coverImg}>
+            <Image
+              src={cover_image}
+              alt="cover_image"
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
+          <div className={style.textContainer}>
+            <h1 className={style.postTitle}>{title}</h1>
+            <div className={style.excerpt}>{`${excerpt}`}</div>
+            <div className={style.postDate}>{`${date}`}</div>
+            <article className={style.postBody}>
+              <div
+                dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+              ></div>
+              {/* <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div> */}
+            </article>
+            {/* <div className={style.postFooter}>
             <div>
               <Link href={`/blog/${prev_slug}`} passHref>
                 <a>{prev_slug}</a>
@@ -81,8 +69,9 @@ export const PostPage: NextPage<IpostPage> = ({
               <a className="btn">Go Back</a>
             </Link>
           </div> */}
+          </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };

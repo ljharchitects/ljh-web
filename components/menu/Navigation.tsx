@@ -13,13 +13,18 @@ const variants = {
 };
 
 interface INavigation {
+  isOpen: boolean;
   toggleOpen: (i?: number | undefined) => void;
 }
 
-export const Navigation: React.FC<INavigation> = ({ toggleOpen }) => {
+export const Navigation: React.FC<INavigation> = ({ isOpen, toggleOpen }) => {
+  let containerClassName = s.nav_container;
+  if (!isOpen) {
+    containerClassName = s.nav_hidden;
+  }
   return (
     <motion.ul variants={variants} className={s.navigation}>
-      <div className={s.nav_container}>
+      <div className={containerClassName}>
         {itemIds.map(({ name, url }, index) => (
           <div key={index} className={s.item}>
             <MenuItem content={name} url={url} toggleOpen={toggleOpen} />

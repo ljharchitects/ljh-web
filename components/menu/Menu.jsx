@@ -55,7 +55,7 @@ const Menu = () => {
           className={style.background}
           variants={isSmall ? mobileSidebar : sidebar}
         />
-        <Navigation toggleOpen={toggleOpen} />
+        <Navigation toggleOpen={toggleOpen} isOpen={isOpen} />
         <MenuToggle toggle={toggleOpen} />
       </motion.nav>
     </div>
