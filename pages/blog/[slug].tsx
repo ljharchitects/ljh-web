@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import style from "../../styles/components/postcontent.module.css";
+import "highlight.js/styles/default.css";
 
 export interface IpostPage {
   frontmatter: Ifrontmatter;
@@ -23,8 +24,31 @@ export const PostPage: NextPage<IpostPage> = ({
   prev_slug,
   next_slug,
 }) => {
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function (code, lang) {
+      const hljs = require("highlight.js");
+      const language = hljs.getLanguage(lang) ? lang : "bash";
+      return hljs.highlight(code, { language }).value;
+    },
+    langPrefix: "hljs language-", // highlight.js css expects a top-level 'hljs' class.
+    pedantic: false,
+    gfm: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false,
+  });
+  console.log(marked.parse(content));
   return (
     <>
+      {/* <Head>
+        <link
+          rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css"
+        ></link>
+      </Head> */}
       <div className={style.card}>
         <div className={style.coverImg}>
           <Image
@@ -38,9 +62,12 @@ export const PostPage: NextPage<IpostPage> = ({
           <h1 className={style.postTitle}>{title}</h1>
           <div className={style.excerpt}>{`${excerpt}`}</div>
           <div className={style.postDate}>{`${date}`}</div>
-          <div className={style.postBody}>
-            <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
-          </div>
+          <article className={style.postBody}>
+            <div
+              dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
+            ></div>
+            {/* <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div> */}
+          </article>
           {/* <div className={style.postFooter}>
             <div>
               <Link href={`/blog/${prev_slug}`} passHref>

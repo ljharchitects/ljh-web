@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import style from "./menu.module.css";
 
 const sidebar = {
-  open: (height = 3000) => ({
+  open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at calc(100vw - 60px) 35px)`,
     transition: {
       type: "spring",
@@ -16,7 +16,7 @@ const sidebar = {
     },
   }),
   closed: {
-    clipPath: `circle(30px at calc(100vw - 60px) 35px)`,
+    clipPath: `circle(22px at calc(100vw - 60px) 35px)`,
     transition: {
       delay: 0,
       type: "spring",
@@ -28,11 +28,11 @@ const sidebar = {
 
 const mobileSidebar = {
   ...sidebar,
-  open: (height = 3000) => ({
+  open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at calc(100vw - 50px) 35px)`,
   }),
   closed: {
-    clipPath: `circle(30px at calc(100vw - 50px) 35px)`,
+    clipPath: `circle(22px at calc(100vw - 50px) 35px)`,
   },
 };
 
@@ -41,7 +41,6 @@ const Menu = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
-  const variants = isSmall ? mobileSidebar : sidebar;
 
   return (
     <div className={style.container}>
@@ -52,7 +51,10 @@ const Menu = () => {
         ref={containerRef}
         className={style.nav}
       >
-        <motion.div className={style.background} variants={variants} />
+        <motion.div
+          className={style.background}
+          variants={isSmall ? mobileSidebar : sidebar}
+        />
         <Navigation toggleOpen={toggleOpen} />
         <MenuToggle toggle={toggleOpen} />
       </motion.nav>
