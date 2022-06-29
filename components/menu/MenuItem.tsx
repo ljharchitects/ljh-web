@@ -1,46 +1,20 @@
 import * as React from "react";
-import { motion } from "framer-motion";
-import s from "./menu.module.css";
-import { NextPage } from "next";
+import s from "./menuitem.module.css";
 import Link from "next/link";
 
-const variants = {
-  open: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      y: { stiffness: 1000, velocity: -100 },
-    },
-  },
-  closed: {
-    y: 50,
-    opacity: 0,
-    transition: {
-      y: { stiffness: 1000 },
-    },
-  },
-};
-
-interface IMenuItem {
+interface props {
   content: string;
   url: string;
-  toggleOpen: (i?: number | undefined) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export const MenuItem: NextPage<IMenuItem> = ({ content, url, toggleOpen }) => {
+export const MenuItem: React.FC<props> = ({ content, url, setOpen }) => {
   return (
-    <motion.li
-      variants={variants}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-    >
+    <div>
       <Link href={url} passHref>
-        <a onClick={() => toggleOpen()}>
-          {/* <div className="icon-placeholder" /> */}
-          <div className={s.text_placeholder}>{content}</div>
-          {/* <div className="icon-placeholder" style={style} />
-      <div className={s.text_placeholder} style={style}> */}
+        <a onClick={() => setOpen(false)}>
+          <div className={s.item}>{content}</div>
         </a>
       </Link>
-    </motion.li>
+    </div>
   );
 };

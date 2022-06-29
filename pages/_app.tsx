@@ -5,7 +5,6 @@ import "../styles/globals.css";
 import Footer from "../components/Footer";
 import GoogleAnalytics from "../components/util/GoogleAnalytics";
 import Menu from "../components/menu/Menu";
-import { AnimatePresence } from "framer-motion";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,15 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Menu />
       <Header />
 
-      {/* <AnimatePresence
-        exitBeforeEnter
-        initial={false}
-        // onExitComplete={() => window.scrollTo(0, 0)}
-      > */}
       <main className={style.container}>
         <Component {...pageProps} />
       </main>
-      {/* </AnimatePresence> */}
       <Footer />
     </>
   );

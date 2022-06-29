@@ -1,37 +1,24 @@
 import * as React from "react";
-import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
-import s from "./menu.module.css";
+import s from "./navigation.module.css";
 
-const variants = {
-  open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-  },
-  closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 },
-  },
-};
-
-interface INavigation {
+interface props {
   isOpen: boolean;
-  toggleOpen: (i?: number | undefined) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Navigation: React.FC<INavigation> = ({ isOpen, toggleOpen }) => {
-  let containerClassName = s.nav_container;
-  if (!isOpen) {
-    containerClassName = s.nav_hidden;
-  }
+export const Navigation: React.FC<props> = ({ isOpen, setOpen }) => {
+  const container = isOpen ? s.container : s.containerHidden;
   return (
-    <motion.ul variants={variants} className={s.navigation}>
-      <div className={containerClassName}>
+    <div className={container}>
+      <div className={s.item_container}>
         {itemIds.map(({ name, url }, index) => (
-          <div key={index} className={s.item}>
-            <MenuItem content={name} url={url} toggleOpen={toggleOpen} />
+          <div key={index}>
+            <MenuItem content={name} url={url} setOpen={setOpen} />
           </div>
         ))}
       </div>
-    </motion.ul>
+    </div>
   );
 };
 

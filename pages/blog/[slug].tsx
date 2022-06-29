@@ -27,15 +27,8 @@ export const PostPage: NextPage<IpostPage> = ({
   next_slug,
 }) => {
   marked.setOptions(markedOptions);
-  console.log(marked.parse(content));
   return (
     <>
-      {/* <Head>
-        <link
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css"
-        ></link>
-      </Head> */}
       <Layout>
         <div className={style.card}>
           <div className={style.coverImg}>
@@ -54,21 +47,7 @@ export const PostPage: NextPage<IpostPage> = ({
               <div
                 dangerouslySetInnerHTML={{ __html: marked.parse(content) }}
               ></div>
-              {/* <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div> */}
             </article>
-            {/* <div className={style.postFooter}>
-            <div>
-              <Link href={`/blog/${prev_slug}`} passHref>
-                <a>{prev_slug}</a>
-              </Link>
-              <Link href={`/blog/${next_slug}`} passHref>
-                <a>{next_slug}</a>
-              </Link>
-            </div>
-            <Link href="/blog">
-              <a className="btn">Go Back</a>
-            </Link>
-          </div> */}
           </div>
         </div>
       </Layout>

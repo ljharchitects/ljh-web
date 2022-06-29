@@ -1,0 +1,10 @@
+.item {
+  position: relative;
+  text-align: center;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  cursor: pointer;
+  pointer-events: auto;
+}
